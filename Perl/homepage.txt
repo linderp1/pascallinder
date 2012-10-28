@@ -1,0 +1,18 @@
+Homepage where Roche took his formmail.pl script
+------------------------------------------------
+http://www.worldwidemart.com/scripts/
+
+
+
+-------------------------------------------------------
+Others
+
+In french
+
+http://www.med.univ-rennes1.fr/~poulique/cours/perl/
+
+
+Comprehensive Perl Archive Network
+http://www.cpan.org/
+
+http://www.perl.com

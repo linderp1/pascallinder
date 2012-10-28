@@ -1,0 +1,71 @@
+REM
+net use s: \\145.245.129.47\data %2 /USER:rbamsbali03\%1 /PERSISTENT:NO
+
+mkdir c:\temp
+
+xcopy /E /H /Q S:\Install\RLP16\98_SilentInstall\* c:\temp
+
+REM Install Oracle Client
+
+c:\temp\10.2.0.1\setup.exe -silent -nowelcome -responseFile c:\temp\10.2.0.1\response\rlp16.rsp
+
+pause
+
+### Service needs to be stopped to install patch
+net stop OracleMTSRecoveryService
+
+REM Install Oracle Patch
+c:\temp\10.2.0.4\setup.exe -silent -nowelcome -responseFile c:\temp\10.2.0.4\response\rlp16.rsp
+
+pause
+
+#################################################################################
+REM Perform a reboot
+shutdown -r now
+exit
+#################################################################################
+start /WAIT c:\temp\Cleverpath_designer\setup /S /v /qn /w 
+
+start /WAIT c:\temp\QCClient\setup /S /v /qn /w
+
+start /WAIT c:\temp\AdminClient\setup /S /v /qn /w
+
+start /WAIT c:\temp\TrendingAddOnA0700\setup /S /v /qn /w
+
+cd c:\temp\RLP16Client
+_InstallRLPAddOns.cmd
+
+
+# Add user to RDP Permission
+wmic
+PATH WIN32_TSPermissionsSetting.TerminalName="RDP-TCP" call AddAccount "rbamouser\zinsmeik", 2
+PATH WIN32_TSPermissionsSetting.TerminalName="RDP-TCP" call AddAccount "rbamouser\bucchera", 2
+PATH WIN32_TSPermissionsSetting.TerminalName="RDP-TCP" call AddAccount "rbamouser\linderp1", 2
+PATH WIN32_TSPermissionsSetting.TerminalName="RDP-TCP" call AddAccount "rbamouser\suckh", 2
+PATH WIN32_TSPermissionsSetting.TerminalName="RDP-TCP" call AddAccount "rbamouser\kochharn", 2
+PATH WIN32_TSPermissionsSetting.TerminalName="RDP-TCP" call AddAccount "exbp\kamats1", 2
+exit
+
+# Copy TNSNames
+
+xcopy c:\temp\TNSNames\*.ora C:\oracle\product\10.2.0\client_1\NETWORK\ADMIN
+
+# Registry Settings for the Machine
+# ODBC
+c:\temp\RLP16Client\Registry\reg.exe IMPORT c:\temp\registry\odbc.reg
+
+
+# Some misc things
+del "C:\Documents and Settings\All Users\Start Menu\Programs\Startup\Windows Search.lnk"
+xcopy "c:\temp\registry\ChemLMS_QCClient.reg" "C:\Documents and Settings\All Users\Desktop"
+xcopy "c:\temp\registry\import.cmd" "C:\Documents and Settings\All Users\Start Menu\Programs\Startup"
+
+# Office Installation
+"S:\Install\RLP16\02_ThirdParty\Microsoft Office\setup.exe" TRANSFORMS=S:\Install\RLP16\98_SilentInstall\Office\RLP16Office.MST /qb-
+
+# Putty
+c:\temp\putty\putty-0.60-installer.exe /silent
+c:\temp\RLP16Client\Registry\reg.exe IMPORT c:\temp\putty\putty.reg
+
+# Profile Error
+# Add user to local admin group, login with user, logout, remove user from local admin group
