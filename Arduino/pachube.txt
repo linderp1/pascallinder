@@ -1,0 +1,8 @@
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "0" "http://www.pachube.com/api/feeds/12155.csv"
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "5" "http://www.pachube.com/api/feeds/12155.csv"
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "20" "http://www.pachube.com/api/feeds/12155.csv"
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "150,0,150,0" "http://www.pachube.com/api/feeds/12155.csv"
+
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "50,0,150,1" "http://www.pachube.com/api/feeds/12155.csv"
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "50,0,150,0" "http://www.pachube.com/api/feeds/12155.csv"
+curl --request PUT --header "X-PachubeApiKey: 641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" --data "100,0,150,0" "http://www.pachube.com/api/feeds/12155.csv"
