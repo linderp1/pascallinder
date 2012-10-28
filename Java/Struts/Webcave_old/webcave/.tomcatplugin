@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>/</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>true</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>false</updateXml>
+    <warLocation>C:\Program Files\Apache Software Foundation\Tomcat 5.5\webapps\webcave.war</warLocation>
+    <extraInfo></extraInfo>
+    <webPath>/webcave</webPath>
+</tomcatProjectProperties>

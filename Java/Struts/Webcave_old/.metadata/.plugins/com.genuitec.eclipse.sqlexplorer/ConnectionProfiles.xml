@@ -1,0 +1,18 @@
+<Beans>
+    <Bean Class="com.genuitec.eclipse.sqlexplorer.utils.ConnectionProfile">
+        <activate>false</activate>
+        <driverIdentifier Class="net.sourceforge.squirrel_sql.fw.id.UidIdentifier">
+            <string>-1</string>
+        </driverIdentifier>
+        <identifier Class="net.sourceforge.squirrel_sql.fw.id.UidIdentifier">
+            <string>38ce7b:10fea5db20b:-7fe4</string>
+        </identifier>
+        <name>webcavedb_mysql</name>
+        <password encryption="true">m8+S5sILilctedVX//gyLA==</password>
+        <promptForPassword>true</promptForPassword>
+        <schema Indexed="true"/>
+        <schemaDisplayPolicy>0</schemaDisplayPolicy>
+        <url>jdbc:odbc:&lt;alias&gt;</url>
+        <userName>root</userName>
+    </Bean>
+</Beans>

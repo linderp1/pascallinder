@@ -1,0 +1,26 @@
+<PUBLIC:COMPONENT supportsEditMode="true" lightWeight="true" tagName="html">
+	<ATTACH event="oncontentready" onevent="init()"/>
+	<ATTACH event="ondocumentready" onevent="checkWidth()"/>
+</PUBLIC:COMPONENT>
+
+<script type="text/javascript">
+	function init() {
+		elementBehaviorInit(element);
+		element.runtimeStyle.border				= "1px solid #F0F0F0"; 
+		element.runtimeStyle.display 			= "block";
+		element.runtimeStyle.backgroundImage 	= 'url("Y:/Pascal/Programming/05_JAVA/Workspaces/Webcave1.0/.metadata/.plugins/com.genuitec.eclipse.webdesigner/tempImages/921db2cd35e520f1.png")';
+		element.runtimeStyle.backgroundPosition	= "top left";
+		element.runtimeStyle.backgroundRepeat	= "no-repeat";
+		element.runtimeStyle.paddingTop			= "14px";
+		element.runtimeStyle.paddingLeft		= "4px";
+		element.runtimeStyle.paddingRight		= "4px";
+		element.runtimeStyle.paddingBottom		= "4px";
+	}
+	
+	function checkWidth() {
+		var renderedWidth = element.offsetWidth;
+		if (renderedWidth > 0 && renderedWidth < 65) {
+			element.runtimeStyle.width = "65px";
+		}
+	}
+</script>

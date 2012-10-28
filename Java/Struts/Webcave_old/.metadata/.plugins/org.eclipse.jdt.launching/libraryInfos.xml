@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="C:\Program Files\Java\sdk5.0_1\jdk\jre" version="1.5.0_09">
+<bootpath>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\i18n.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files\Java\j2sdk1.4.2_13" version="1.4.2_13">
+<bootpath>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\i18n.jar"/>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\j2sdk1.4.2_13\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files\Java\sdk-5_04\jdk" version="1.6.0_04">
+<bootpath>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\resources.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files\Java\sdk-5_04\jdk\jre" version="1.6.0_04">
+<bootpath>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\resources.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\sdk-5_04\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files\Java\sdk5.0_1\jdk" version="1.5.0_09">
+<bootpath>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\i18n.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\sdk5.0_1\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Program Files\Java\j2re1.4.2_13" version="1.4.2_13">
+<bootpath>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\i18n.jar"/>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\j2re1.4.2_13\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>
