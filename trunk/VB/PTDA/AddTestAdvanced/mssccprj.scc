@@ -1,0 +1,8 @@
+SCC = This is a Source Code Control file
+
+[PeerProcChoice.vbp]
+SCC_Aux_Path =\\RBAMSCOE131\Dept_POY\_Special\PGSQ\ATLas\00_VSS\2003-RLP-1001-Nutley,
+SCC_Project_Name ="$/2003-RLP-1001-Nutley/Source/PeerProcChoice", OLAAAAAA
+[AddTestAdvanced.vbp]
+SCC_Project_Name=this project is not under source code control
+SCC_Aux_Path=<This is an empty string for the mssccprj.scc file>
