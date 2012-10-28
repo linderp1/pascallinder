@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+   <data-sources>
+	<data-source type="org.apache.commons.dbcp.BasicDataSource">
+  		<set-property property="driverClassName" value="com.mysql.jdbc.Driver" /> 
+  		<set-property property="url" value="jdbc:mysql://localhost/webcavedb?autoReconnect=true" /> 
+  		<set-property property="username" value="root" /> 
+  		<set-property property="password" value="5008apt19" /> 
+  		<set-property property="maxActive" value="10" /> 
+  		<set-property property="maxWait" value="5000" /> 
+  		<set-property property="defaultAutoCommit" value="true" /> 
+  		<set-property property="defaultReadOnly" value="false" /> 
+  		<set-property property="validationQuery" value="SELECT 1 from dual" /> 
+  	</data-source>
+  	</data-sources>
+
+   <form-beans >
+    <form-bean name="wineListForm" type="fr.pascallinder.webcave.form.WineListForm" />
+    <form-bean name="MemberForm" type="fr.pascallinder.webcave.MemberForm" />
+    <form-bean name="RegisterForm" type="fr.pascallinder.webcave.RegisterForm" />
+    
+   </form-beans>
+
+   <global-exceptions />
+   <global-forwards >
+    <forward
+      name="welcome"
+      path="/default.do"
+      redirect="true" />
+
+   </global-forwards>
+
+   <action-mappings >
+    <action forward="/WebContent/jsp/index.jsp" path="/default" />
+    <action path="/TestConnectAction" type="fr.pascallinder.webcave.TestConnectAction">
+      <forward name="ok" path="/ok.jsp" />
+    </action>
+    <action
+      attribute="MemberForm"
+      input="/WebContent/jsp/member.jsp"
+      name="MemberForm"
+      path="/MemberAction"
+      scope="request"
+      type="fr.pascallinder.webcave.MemberAction">
+      <forward name="FW_SuccessLogin" path="/WebContent/jsp/winedisplay.jsp" />
+      <forward name="FW_FailedLogin" path="/WebContent/jsp/accessprohibited.jsp" />
+    </action>
+    <action
+      attribute="RegisterForm"
+      name="RegisterForm"
+      path="/RegisterAction"
+      scope="request"
+      type="fr.pascallinder.webcave.RegisterAction">
+      <forward name="finished" path="/WebContent/jsp/finished.jsp" />
+    </action>
+   </action-mappings>
+
+   <controller bufferSize="4096" debug="0" />
+   <message-resources parameter="fr.pascallinder.webcave.ApplicationResources" />
+   
+   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+   <set-property property="pathnames" value="/WEB-INF/validation-rules.xml, /WEB-INF/validation.xml"/>
+   </plug-in>
+   
+</struts-config>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="DateTagDialog">
+	</section>
+	<section name="TagConfigurationDialog">
+		<item value="381" key="AllowRefreshWidth"/>
+		<item value="543" key="AllowRefreshHeight"/>
+	</section>
+	<section name="SharingWizard">
+	</section>
+	<section name="CommitWizard">
+		<item value="430" key="height"/>
+		<item value="400" key="width"/>
+	</section>
+	<section name="NewLocationWizard">
+		<item value="false" key="ConfigurationWizardMainPage.STORE_DONT_VALIDATE_ID"/>
+		<list key="ConfigurationWizardMainPage.STORE_PATH_ID">
+			<item value="/DEVELOPMENT/CVS_Repository/webcave"/>
+			<item value="/DEVELOPMENT/CVS_Repository"/>
+			<item value="C:\DEVELOPMENT\CVS_Repository"/>
+			<item value="C:\DEVELOPMENT\CVS_Repository\CVSROOT"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_HOSTNAME_ID">
+			<item value="192.168.1.4"/>
+			<item value="localhost"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_USERNAME_ID">
+			<item value="Pascal"/>
+		</list>
+	</section>
+	<section name="org.eclipse.team.ccvs.ui.RepositoriesView">
+		<item value="" key="SelectedWorkingSet"/>
+	</section>
+	<section name="RefreshRemoteProjectWizard">
+		<item value="false" key="UseWorkingSet"/>
+	</section>
+</section>

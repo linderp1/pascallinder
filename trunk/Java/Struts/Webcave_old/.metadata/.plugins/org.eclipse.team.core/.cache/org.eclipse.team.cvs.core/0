@@ -1,0 +1,59 @@
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+
+
+<jsp:useBean id="WineListForm" class="fr.pascallinder.webcave.WineListForm" scope="session" />
+
+<html:html locale="false">
+<head>
+	<LINK REL="stylesheet" HREF="WebContent/css/webcave.css" TYPE="text/css">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<title><bean:message key="WineDisplay.title" /></title>
+</head>
+<body>
+	<div id="container">
+		<div id="intro">
+			<div id="pageHeader">
+				<h1>
+					<span><bean:message key="WineDisplay.title" />Webcave</span>
+				</h1>
+				<h2>
+					<span>The Beauty of <acronym title="Cascading Style Sheets">CSS</acronym> Design</span>
+				</h2>
+			</div>
+			<div id="quickSummary">
+				<p class="p2">
+					Manage your wine collection using this web application.
+					<br><br>Design by <a href="http://www.pascallinder.fr">PaL</a>
+				</p>
+			</div>
+			<div id="preamble">
+				This is the wine list
+				<br>
+				<p class="p1">
+					Click on a wine to get more information on it.
+				</p>
+				<%--Used for testing the DB connection only
+      				<html:link action="TestConnectAction">Show the winelist</html:link> 
+				--%>
+
+			</div>
+			<div>
+				Wine list
+				<br>Hello
+				<br>
+				<p class="p1">
+					-----------------------
+				</p>
+				<%--Used for testing the DB connection only
+      				<html:link action="TestConnectAction">Show the winelist</html:link> 
+				--%>
+
+			</div>
+
+		</div>
+	</div>
+	</div>
+</body>
+</html:html>

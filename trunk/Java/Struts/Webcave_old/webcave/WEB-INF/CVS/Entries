@@ -1,0 +1,14 @@
+/.cvsignore/1.1/Thu Jan  4 00:04:53 2007//
+/.struts-config.mex/1.1/Thu Jan  4 00:04:54 2007//
+D/lib////
+D/src////
+/struts-bean.tld/1.1/Thu Jan  4 00:04:53 2007//
+/struts-config.xml/1.1/Thu Jan  4 00:04:53 2007//
+/struts-html.tld/1.1/Thu Jan  4 00:04:54 2007//
+/struts-logic.tld/1.1/Thu Jan  4 00:04:53 2007//
+/struts-nested.tld/1.1/Thu Jan  4 00:04:54 2007//
+/struts-template.tld/1.1/Thu Jan  4 00:04:53 2007//
+/struts-tiles.tld/1.1/Thu Jan  4 00:04:53 2007//
+/validation-rules.xml/1.1/Thu Jan  4 00:04:53 2007//
+/validation.xml/1.1/Thu Jan  4 00:04:53 2007//
+/web.xml/1.1/Thu Jan  4 00:04:53 2007//

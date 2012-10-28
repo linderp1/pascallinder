@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ADD_VM_DIALOG_SECTION">
+		<item key="org.eclipse.debug.ui.DIALOG_HEIGHT" value="411"/>
+		<item key="org.eclipse.debug.ui.DIALOG_WIDTH" value="485"/>
+		<item key="org.eclipse.debug.ui.DIALOG_ORIGIN_Y" value="226"/>
+		<item key="org.eclipse.debug.ui.DIALOG_ORIGIN_X" value="802"/>
+	</section>
+</section>

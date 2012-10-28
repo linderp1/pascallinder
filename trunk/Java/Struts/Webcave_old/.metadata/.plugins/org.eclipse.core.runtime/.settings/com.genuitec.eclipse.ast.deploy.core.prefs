@@ -1,0 +1,12 @@
+#Thu Jan 04 01:51:14 CET 2007
+tomcat5Server.webcave.isDeployed=true
+tomcat5Server.webcave.type=WebDeployment
+tomcat5Server.webcave.deployIsOverProject=false
+eclipse.preferences.version=1
+tomcat5Server.webcave.shouldBackup=false
+tomcat5Server.webcave.deploymentPath=C\:\\Program Files\\Apache Software Foundation\\Tomcat 5.5\\webapps\\webcave
+tomcat5Server.webcave.contextRoot=/webcave
+tomcat5Server.webcave.isUptoDate=true
+tomcat5Server.webcave.earProjectName=
+tomcat5Server.webcave.shouldOverwrite=false
+tomcat5Server.webcave.isExploded=true

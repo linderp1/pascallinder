@@ -1,0 +1,5 @@
+#Thu Jan 04 01:49:37 CET 2007
+managerUrl=http\://localhost\:8080/manager
+eclipse.preferences.version=1
+fixTomcatHomeBug=fixed
+computeSourcePath=true

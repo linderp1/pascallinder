@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommitComments>	<CommitComment>Changed smtp address (from wanadoo to neuf)</CommitComment>
+	<CommitComment>Added confirmation by e-mail after user successfully registered</CommitComment>
+	<CommitComment>Entered a &quot;Hello&quot; message in the index page. (for testing my CVS)</CommitComment>
+	<CommitComment>Initial revision</CommitComment>
+</CommitComments>
