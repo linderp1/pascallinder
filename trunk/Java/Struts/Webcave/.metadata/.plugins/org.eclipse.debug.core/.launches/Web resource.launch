@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.eclipse.wst.server.ui.launchConfigurationType">
+<stringAttribute key="client-id" value="org.eclipse.wst.server.ui.web"/>
+<stringAttribute key="launchable-adapter-id" value="org.eclipse.jst.server.tomcat.web"/>
+<stringAttribute key="module-artifact" value="org.eclipse.jst.jee.server:WebCave//"/>
+<stringAttribute key="module-artifact-class" value="org.eclipse.wst.server.core.util.WebResource"/>
+<stringAttribute key="server-id" value="20.04.08_23_352"/>
+</launchConfiguration>

@@ -1,0 +1,831 @@
+
+/* *********************** Scroll bar ************************* */
+/* ************************************************************ */
+body { scrollbar-3dlight-color:#eeeeee; scrollbar-arrow-color:#999999; scrollbar-base-color:#ffffff; scrollbar-face-color:#eeeeee; scrollbar-highlight-color:white; scrollbar-track-color:white;  margin:0px; text-align:center; }
+
+
+/* *********************** Common font size ******************* */
+/* *********************** General Layout ********************* */
+/* ************************************************************ */
+body, td, a, p, h1, h2, h3, div, select, input { font-family: Arial, Helvetica, sans-serif; font-size:11px;}
+body { background-color:white; border:0px;}
+
+
+a, a:active, a:visited { text-decoration:none;cursor: pointer;}
+
+
+a.link{ font-family: Arial, Helvetica, sans-serif;font-size: 10px; color: #666666; text-decoration: none; cursor: pointer;}
+a.link:hover { font-family: Arial, Helvetica, sans-serif;font-size: 10px; color: #666666; text-decoration: none; font-weight:normal; cursor: pointer;}
+
+a.smallLink { color: #666666; font-size:10px;text-decoration:none;}
+a.rightArrowLink{ color: #666666; font-size:10px;text-decoration:none; }	
+
+form { margin-bottom:0px;}
+table.genLayoutMainTable { width:980px;	background-color: #FFFFFF; }
+table.appointmentTable { width:100%;	background-color: #FFFFFF; }
+table.courseTable { width:100%;	background-color: #FFFFFF; border-bottom: 2px solid #EBEBEB; border-left: 2px solid #EBEBEB;}
+table.courseTableGrey { width:100%;	background-color: #F5F5F5; border-bottom: 2px solid #EBEBEB; border-left: 2px solid #EBEBEB;}
+table.courseTable TD, table.courseTableGrey TD, table.courseTableHeader TD{border-right: 2px solid #EBEBEB; padding: 5px 5px 5px 5px;}
+table.courseTableHeader { width:100%;	background-color: #FDEDB8; border-bottom: 2px solid #EBEBEB; border-left: 2px solid #EBEBEB; border-top: 2px solid #EBEBEB;}
+
+table.known-issues td.title {
+font-size: 12pt;
+font-weight: bold;
+font-family: Arial, sans-serif;	
+color: white;
+border-bottom: solid 2px #FFF;
+padding: 0 81px 0 10px;
+height: 30px;
+background: #000 url(shareweb_chicklet.gif) no-repeat right;
+}
+
+table.known-issues th.heading3 {
+background: #FFF9BF;
+font-weight: bold;
+padding: 5px 10px 5px 10px;
+font-size: 11pt;
+text-align: left;
+color: #003366;
+border-right: solid 2px #FFF9BF;
+}
+
+table.known-issues td.heading {
+background: #FFF9BF;
+padding: 1px 10px 1px 2px;
+font-size: 8pt;
+text-align: left;
+color: #003366;
+}
+
+table.known-issues td.heading1 {
+background: #FFF999;
+font-weight: bold;
+width: 235px;
+padding: 1px 5px 1px 5px;
+font-size: 8pt;
+border-right: solid 2px #FFF;
+}
+
+table.known-issues td.heading2 {
+background: #FFF999;
+font-weight: bold;
+padding: 1px 5px 1px 5px;
+font-size: 8pt;
+width: 110px;
+}
+			
+table.known-issues td.intro {
+padding: 10px;
+background: #FFF999;
+color: #003366;
+line-height: 16px;
+border-right: solid 2px #FFF9BF;
+}
+
+table.known-issues td.headingrow1 {
+width: 250px;
+display: block;
+height: 2px;
+margin: 0px;
+background: #CCC;
+}
+
+table.known-issues td.headingrow2 {
+width: 120px;
+display: block;
+height: 2px;
+margin: 0px;
+background: #CCC;
+}
+
+table.known-issues td.headingrow1 div.separatorGray,table.known-issues td.headingrow2 div.separatorGray  {
+display: none;
+}
+
+table.known-issues td.heading1 span.heading1{
+font-weight: bold;
+font-size: 8pt;
+color: #003366;
+}
+
+table.known-issues td.heading2 span.heading1{
+font-weight: bold;
+font-size: 8pt;
+color: #003366;
+}
+
+td.genLayoutLeftMenu { width:174px; height:500px; vertical-align:top; background-color:#FDEDB8; }
+td.genLayoutRightMenu { width:174px; height:500px; vertical-align:top; background-color:#EBEBEB; border-left:24px solid #ffffff;}
+
+td.genLayoutContent { background-color:#ffffff; width:100%; vertical-align:top; padding:20px 0px 5px 24px; }
+td.genLayoutContentPrint { background-color:#ffffff; width:100%; vertical-align:top; padding:20px 24px 5px 24px; }
+
+/* row break after floated elements */
+	div.rowBreak { clear: both; width:1px; height:0px; overflow: hidden; font-size: 0px;}
+	
+.floatLeft	{	display: block;	float: left; margin: 3px 10px 6px 0px;	}
+.floatRight	{	display: block;	float: right; margin: 3px 0px 6px 0px;	}
+
+/* *********************** Header ***************************** */
+/* ************************************************************ */
+.topLeftBox{ background-image:url(header_left_neu.gif) }
+td.functionTitle { font-size:11px; padding-left:15px; color:#ffffff; }
+
+
+/* ************************************************************ */
+/* Left Menu -------------------------------------------------  */
+/* ************************************************************ */
+
+div.leftSearch { height:75px; width:174px; background-color: #EBEBEB; padding-top:10px; padding-bottom:10px; }
+
+div.leftSearch a img { margin-top:2px; margin-right:2px; float:right; }
+input.leftSearchInput { float:left; width:105px; height:18px; }
+div.whitespace { background-color:#FFFFFF; height:3px; margin:0px; }
+
+
+/* ************************************************************ */
+/* Footer ----------------------------------------------------  */
+/* ************************************************************ */
+div.footer td{ color: #666666; font-size:10px;}
+div.footer a{ color: #666666; font-size:10px; text-decoration:none; }
+div.footer a:hover{ color: #666666; font-size:10px; text-decoration:none; font-weight:normal;}
+
+/* ************************************************************ */
+/* Right Column: Shortcut Boxes ------------------------------- */
+/* ************************************************************ */
+
+
+div.clockbox { background-color:#EBEBEB; width:174px; height:75; padding:0 0 5 0px; }
+td.clockboxhead{ background-color:#B5B5B5; height:20px; font-weight:bold;}
+
+
+div.teaserbox { background-color:#EBEBEB; width:174px; height:75;}
+span.teaserbody{ width:174px; padding:10 15 10 15;}
+
+span.teaserbody a, a:active { text-decoration:underline; font-weight:bold;}
+span.teaserbody a:visited { text-decoration:underline; font-weight:bold; color:#666666;}
+
+span.teaserbody img {float: left;}
+span.teaserbody span.readmore img {float: none;}
+
+
+
+span.teaserhead{ background-color: #FDD106;width:174px; height:20px; padding: 3 15 0 15px; vertical-align: middle; font-weight:bold; display: block;}
+div.teaserseperator{ width:100%; background-color:#ffffff; height:3px;}
+
+
+div.peoplelist td{ vertical-align:top; }
+div.peoplelist a{ color:#666666; text-decoration:none; }
+div.peoplelist a:hover{ color:#666666; text-decoration:none; }
+
+span.readmore { color: #666666; font-size:10px;}
+span.readmore a{ color: #666666; font-size:10px; text-decoration:none;}
+span.readmore a:hover{ color: #666666; font-size:10px; text-decoration:none;}
+
+
+
+
+/* ************************************************************ */
+/* Content Area: Styles for Content Area ---------------------  */
+/* ************************************************************ */
+
+div.simplecontent { width:100%; padding: 0 10 15 1;}
+div.simplecontent h1{ font-size:16px; margin:0px; padding:0px 0px 10px 0px; }
+div.simplecontent h2{ font-size:12px; text-transform:uppercase; margin: 6 3 10 0; }
+div.simplecontent a, a:active { text-decoration:underline; font-weight:bold;}
+div.simplecontent a:visited { text-decoration:underline; font-weight:bold; color:#666666;}
+
+
+
+div.separatorGray {width:100%; background-color:#666666; height:1px; border-top:5px solid white; border-bottom:5px solid white; }
+
+div.seperator {width:100%; background-color:#666666; height:1px; border-top:15px solid white; border-bottom:3px solid white; }
+div.lightseperator {width:100%; background-color:#EBEBEB; height:1px; border-top:3px solid white; border-bottom:10px solid white; }
+div.monthseperator {width:100%; background-color:#FDD106; height:1px; border-top:3px solid white; border-bottom:10px solid white; }
+div.separatorFuctionColor {width:100%; background-color:#FDD106; height:1px; border-top:3px solid white; border-bottom:3px solid white;}
+
+
+/* Content Area: Common Headings -----------------------------  */
+
+span.heading1{ font-size:16px; font-weight:bold; }
+span.heading2{ font-size:12px; font-weight:bold; }
+
+span.heading1gray{ font-size:16px; font-weight:bold; color:#666666; }
+span.heading2gray{ font-size:12px; font-weight:bold; color:#666666; }
+
+span.heading1Function, h1.heading1Function{ font-size:16px; font-weight:bold; color:#FDD106;}
+span.heading2Function, h2.heading1Function{ font-size:12px; font-weight:bold; color:#FDD106;}
+
+a.sherweblink{
+color: #000;
+font-weight: bold;
+text-decoration: underline;
+}
+
+a.sherweblink:visited{
+color: #666666;;
+font-weight: bold;
+text-decoration: underline;
+}
+
+span.red{ color:#CC0033; }
+
+div.coverstory { width:100%; background-color:#FDEDB8; padding: 5 5 5 5; margin-bottom: 20px; }
+div.coverstory p { text-align: justify; padding: 0px; }
+div.coverstory a, a:active { text-decoration:underline; font-weight:bold; }
+div.coverstory a:visited { text-decoration:underline; font-weight:bold; color:#666666;}
+
+td.defaultcell { vertical-align:top; padding:5 15 5 5; }
+td.headercell { vertical-align:top; padding:5 15 5 5; background-color:#FDEDB8;}
+td.graycell { vertical-align:top; padding:5 15 5 5; background-color:F5F5F5;}
+
+.language {text-align:right; width:100%;  float:right; margin-top:-20px;}
+
+
+p.blocknowrap{
+width: 100%;
+padding-bottom: 20px;
+}
+
+p.blocknowrap a{
+white-space: nowrap;
+line-height: 18px;
+padding: 0 8px 0 0;
+border-left: solid 1px white;
+}
+
+/* search result description */
+
+em.description{
+display: block;
+}
+
+/* ************************************************************ */
+/* ********************************* Umbrella: Start ********** */
+/* ************************************************************ */
+
+div.pgnewstitle { background-color: #FDD106; color:#FFFFFF; border-right: 3px solid white; height: 20px; width: 213px; font-size:12px; font-weight:bold; padding: 2 0 0 10;}
+div.pgnewsarchive { background-color: #FDD106; color:#000000; height: 20px; width: 65px; font-size:12px; font-weight:bold; padding: 2 0 0 5;}
+div.pgnewstitlefull { background-color: #FDD106; color:#FFFFFF; border-right: 3px solid white; height: 20px; width: 516px; font-size:12px; font-weight:bold; padding: 2 0 0 10;}
+div.pharmanewstitle { background-color: #666666; color:#FFFFFF; border-right: 3px solid white; height: 20px; width: 213px; font-size:12px; font-weight:bold; padding: 2 0 0 10;}
+div.pharmanewsarchive { background-color: #666666; color:#FFFFFF; height: 20px; width: 65px; font-size:12px; font-weight:bold; padding: 2 0 0 5;}
+
+a.archive:link, a.archive:visited, a.archive:active, a.archive:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+div.pgnewsitem {
+	text-decoration:none; 
+	color:#000000;
+	background-image:url(arrow_nav_1.gif);
+	background-repeat: no-repeat;
+	background-position: 0% 0%;
+	padding:3px 3px 3px 15px;
+}
+/*div.pgnewsitem a:hover {font-weight: bold; text-decoration:none; color:#000000;}*/
+div.pgnewsitem span{font-weight: normal; color: #666666; }
+
+/*div.pharmanewsitem {margin-bottom: 10px;}*/
+div.pharmanewsitem {
+	text-decoration:none;
+	color:#000000;
+	background-image:url(arrow_nav_grey.gif);
+	background-repeat: no-repeat;
+	background-position: 0% 0%;
+	padding:3px 3px 3px 15px;
+}
+/*div.pharmanewsitem a:hover{font-weight:bold; text-decoration:none; color:#000000;}*/
+div.pharmanewsitem span{font-weight: normal; color: #666666; }
+
+
+
+/* Ticker Layout -----------------------------------------------  */
+input.scroller {border: solid 1px #666;height: 20px;width: 437px; color: #666; padding-top: 1px; font-size: 13px; letter-spacing: 1px; padding: 1px 10px 0px 10px;	}
+
+div.titlediv {font-family: Arial;font-size: 12px;color:#666666;background-color: #fdd106;font-weight: bold;float: left;width:473px;height:20px;padding: 2px 0px 0px 10px;border: 1px solid #666666;	}
+div.tickerbox { background-color: #FDD106; color:#FFFFFF; width: 145px; height:20; float:left; font-size: 12px; font-weight:bold; padding:2 0 0 10; }
+div.tickerbox a{color:#FFFFFF;font-size: 12px; font-weight:bold;}
+
+
+/* ************************************************************ */
+/* ********************************* Umbrella: End ************ */
+/* ************************************************************ */
+
+
+
+/* **************************************************************************** */
+/*********************************** Top Navigation *****************************/
+/* **************************************************************************** */
+
+.pgheaderbar, .pgmheaderbar, .pgsheaderbar, .pgaheaderbar, .pgdheaderbar, .pglheaderbar, .pgiheaderbar, .pgrheaderbar, .pgcheaderbar, .pgareaheaderbar  { 
+	font-size: 11px; font-style: normal; color: #000000; height:25px; border: solid #ffffff; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 0px; border-left-width: 0px;
+}
+.pgheaderbar { background-color: #FDD106; }
+.pgmheaderbar { background-color: #8E8EC0;  color: #ffffff; }
+.pgsheaderbar { background-color: #73AFC1; }
+.pgaheaderbar { background-color: #EC8508; }
+.pgdheaderbar { background-color: #D04A34;  color: #ffffff; }
+.pglheaderbar { background-color: #3977B0;  color: #ffffff; }
+.pgiheaderbar { background-color: #EC8508; }
+.pgrheaderbar { background-color: #F5B300; }
+.pgcheaderbar { background-color: #F5B300; }
+
+.pgcheaderbarEmpty { background-color: #F5B300; }
+.pgpheaderbarEmpty { background-color: #F5B300; }
+
+.pgareaheaderbar { background-color: #F5B300; }
+
+.pgmserviceheaderbar { font-family: Arial, Helvetica, sans-serif;font-size: 11px;font-style: normal;color: #000000;background-color: #B5B5D6;height:25px;border: solid #ffffff; border-right-width: 3px;border-top-width: 3px;border-bottom-width: 0px;border-left-width: 0px;}
+ 
+
+
+div a {text-decoration:none; color:#000000;}
+div a:hover { text-decoration: none; }
+
+div.topPG  {
+	/*border-top-width:4px;border-left-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-style: solid; position:absolute; visibility:hidden;z-index:5; background-color:#FFFFFF; width:106px; border-color: #FDD106; top:92px; left:static-position;*/
+	border-top-width:4px;border-left-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-style: solid; position:absolute; visibility:hidden;z-index:5; background-color:#FFFFFF; width:106px; border-color: #FDD106;
+}
+
+div.topPGM, div.topPGS, div.topPGA, div.topPGI, div.topPGL, div.topPGD, div.topPGE, div.topPGC, div.topPHG, div.topPGArea {
+	border-top-width:4px;border-left-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-style: solid; position:absolute; visibility:hidden;z-index:5; background-color:#FFFFFF; width:111px;
+}
+
+div.topPGM { border-color: #8E8EC0; }
+div.topPGS { border-color: #73AFC1; }
+div.topPGA { border-color: #EC8508; }
+div.topPGD { border-color: #D04A34; }
+div.topPGI { border-color: #EC8508; }
+div.topPGL { border-color: #3977B0; }
+div.topPGE { border-color: #F5B300; }
+div.topPGC { border-color: #F5B300; }
+div.topPHG { border-color: #F5B300; }
+div.topPGArea { border-color: #F5B300; width:107px;}
+
+span.topPG, span.topPGM, span.topPGD, span.topPGS, span.topPGA, span.topPGI, span.topPGL, span.topPGE, span.topPGC, span.topPHG, span.topPGArea {
+	clear:both; width: 109px;
+}
+
+span.topPG{ width: 106px; }
+span.topPGArea { width: 105px; }
+span.topPG  a, span.topPGM a, span.topPGD a, span.topPGS a, span.topPGA a, span.topPGI a, span.topPGL a, span.topPGE a, span.topPGC a, span.topPHG a, span.topPGArea a { 
+	display:block; text-decoration:none; padding:3px 3px 3px 10px; color:#000000; background-color:#FFFFFF; width: 109px; 
+}
+
+span.topPG  a { width: 106px; }
+span.topPGArea a { width: 105px; }
+span.topPG a:hover, span.topPGM a:hover, span.topPGD a:hover, span.topPGS a:hover, span.topPGA a:hover, span.topPGI a:hover, span.topPGL a:hover, span.topPGE a:hover, span.topPGC a:hover, div.topPHG a:hover, span.topPGArea a:hover {
+	text-decoration: none; font-weight:normal;
+}
+
+span.topPG  a:hover { background-color:#FDEDB8; }
+span.topPGM a:hover { background-color:#DDDDEC; }
+span.topPGS a:hover { background-color:#D5E7EC; }
+span.topPGA a:hover { background-color:#F9DAB4; }
+span.topPGD a:hover { background-color:#F1C8C2; }
+span.topPGI a:hover { background-color:#F9DAB4; }
+span.topPGL a:hover { background-color:#C3D6E7; }
+span.topPGE a:hover { background-color:#FCE8B2; }
+span.topPGC a:hover { background-color:#FCE8B2; }
+span.topPHG  a:hover { background-color:#FDEDB8; }
+span.topPGArea a:hover { background-color:#F9DAB4; }
+
+
+/* **************************************************************************** */
+/*********************************** Left Navigation ****************************/
+/* **************************************************************************** */
+
+
+div.leftNav1 	{ clear:both; width: 174px; }
+div.leftNav2 	{ clear:both; width: 174px; }
+div.leftNav3 	{ clear:both; width: 174px; }
+div.leftNav4 	{ clear:both; width: 174px; }
+
+
+div.leftNav1 a	{ 
+	background-color:#FDDE77; 
+	color:#000000; 
+	border-bottom: 1px solid #FDD106; 
+	display:block; text-decoration:none; 
+	padding-top:3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 20px;
+	}
+
+
+
+div.leftNav2 a { 
+	background-color:#fdedb8; 
+	color:#000000; 
+	display:block; 
+	text-decoration:none; 
+	padding-top:3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 30px;
+	}
+
+
+
+div.leftNav3 a {
+	background-color:#fdedb8; 
+	color:#000000; 
+	display:block; 
+	text-decoration:none; 
+	padding-top:3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 40px;
+	}
+
+
+div.leftNav4 a {
+	background-color:#fdedb8; 
+	color:#000000; 
+	display:block; 
+	text-decoration:none; 
+	padding-top:3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 50px;
+	}
+
+
+div.leftNav1active a { 
+	background-color:#FDD106; 
+	color:#000000; 
+	text-decoration:none; 
+	display:block; 
+	border-bottom: 1px solid #FDD106; 
+	padding-top:3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 20px;
+	}
+	
+
+
+
+div.leftNav2active a { 
+ 	background-color:#fdedb8;
+	background-image:url(arrow_nav_1.gif);
+	background-repeat: no-repeat;
+	background-position: 12% 0%;
+	font-weight:bold; display:block;
+	text-decoration:none; border-bottom: 1px solid #fdedb8; 
+	 padding-top:3px;
+	 padding-right: 10px;
+	 padding-bottom: 3px;
+	 padding-left: 30px;
+	color:#000000;
+}
+
+
+div.leftNav3active a { 
+ 	background-color:#fdedb8;
+	background-image:url(arrow_nav_1.gif);
+	background-repeat: no-repeat;
+	background-position: 18% 0%;
+	font-weight:bold; display:block;
+	text-decoration:none; border-bottom: 1px solid #fdedb8; 
+	 padding-top:3px;
+	 padding-right: 10px;
+	 padding-bottom: 3px;
+	 padding-left: 40px;
+	color:#000000;
+}
+
+div.leftNav4active a { 
+	background-color:#fdedb8;
+	background-image:url(arrow_nav_1.gif);
+	background-repeat: no-repeat;
+	background-position: 18% 0%;
+	font-weight:bold; display:block;
+	text-decoration:none; border-bottom: 1px solid #fdedb8; 
+	padding-top:3px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-left: 50px;
+	color:#000000;
+}
+
+div.leftNav1 a:hover { background-color:#FDD106; text-decoration: none; }
+div.leftNav2 a:hover { background-color:#FDD106; text-decoration: none; }
+div.leftNav3 a:hover { background-color:#FDD106; text-decoration: none; }
+div.leftNav4 a:hover { background-color:#FDD106; text-decoration: none; }
+
+div.leftNav1active a:hover	{ background-color:#FDD106; text-decoration: none; border-bottom: 1px solid #FDD106; }
+div.leftNav2active a:hover	{ background-color:#FDD106; text-decoration: none; border-bottom: 1px solid #FDD106; }
+div.leftNav3active a:hover	{ background-color:#FDD106; text-decoration: none; border-bottom: 1px solid #FDD106; }
+div.leftNav4active a:hover	{ background-color:#FDD106; text-decoration: none; border-bottom: 1px solid #FDD106; }
+
+
+
+/* **************************************************************************** */
+/*********************************** Line Navigation ****************************/
+/* **************************************************************************** */
+
+#navline1, #navline2, #navline3{ position: absolute; visibility: hidden; left: 0px; top: 0px; height:1px; z-index: 3; }
+#navline1 { background-color:#FDD106; width: 243px; }
+#navline2 { background-color:#EC8508; width: 247px; }
+#navline3 { background-color:#F3B05E; width: 128px; }
+
+#navarrow1, #navarrow2, #navarrow3 { position: absolute; visibility: hidden; left: 0px;	top: 0px; width: 5px; height:7px; z-index: 3; background-image:url(navarrow.gif); }
+#navarrow1 { background-color:#FDD106; }
+#navarrow2 { background-color:#EC8508; }
+#navarrow3 { background-color:#F3B05E; }
+#roche { position: absolute; visibility: hidden; left: 0px; top: 0px; width: 62px; height:32px; z-index: 10;}
+
+.bgColorA { background-color:#FDD106; }
+
+/* **************************************************************************** */
+/*********************************** Line Navigation ****************************/
+/* **************************************************************************** */
+
+div.sitemap a{ 
+ 	background-color:#FFFFFF;
+	background-image:url(arrow_nav_1.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	text-decoration:none;
+	padding:0px 10px 0px 15px;
+	color:#000000;
+}
+
+/* **************************************************************************** */
+/*********************************** Admin Forms ********************************/
+/* **************************************************************************** */
+
+input.adminForm, select.adminForm {width: 400px;}
+
+/* **************************************************************************** */
+/*********************************** IFrame ********************************/
+/* **************************************************************************** */
+
+#externalIframe{
+	padding: 20px 0px 0px 25px;
+}
+
+#diviframe{
+position: absolute;
+display: none;
+}
+
+
+/* --------------------------------------------------------------  */
+/* LLConnection -------------------------------------------------  */
+/* --------------------------------------------------------------  */
+
+div.shareweblist{
+clear: both;
+display: block;
+}
+p.paging{
+width: 100%;
+text-align: center;
+padding-top: 10px;
+margin: 0px 0 10px 0;
+display: block;
+}
+p.paging a, p.paging a:visited{
+text-decoration: underline;
+font-weight: bold;
+color: #000;
+}
+p.paging a:hover{
+color: #666;
+}
+.shareweblist div{
+float: left;
+width: 99%;
+}
+
+.shareweblist div p.date{
+float: left;
+width: 80px;
+display: block;
+margin: 5px 0 5px 0;
+/*font-style: italic;*/
+}
+.shareweblist div p.name{
+float: left;
+width: 85%;
+padding-left: 1px;
+display: block;
+margin: 5px 0 5px 0;
+font-weight: bold;
+}
+.shareweblist div p.name img{
+margin: 0 5px 0 0;
+}
+.shareweblist div p.name a{
+text-decoration: underline;
+}
+.shareweblist div p.name a:hover{
+text-decoration: none;
+color: #666;
+}
+.shareweblist div p.name span{
+float: left;
+margin: 2px 0 5px 0;
+padding-left: 1px;
+font-style: italic;
+font-weight: normal;
+}
+.shareweblist span.desc{
+margin: 2px 0 5px 0;
+padding-left: 1px;
+font-style: italic;
+display: block;
+}
+.shareweblist .separatorLineService{
+height: 1px;
+border-top: solid 1px #FDD106;
+width: 99%;
+margin: 0px;
+padding: 0px;
+}
+
+div.shareweblist h1.content{ 
+padding: 0px 0px 12px 0px; 
+margin: 0px;
+font-size: 16px; 
+font-weight: bold; 
+color: #FDD106;
+}
+div.shareweblist h3{
+border-bottom: solid 1px #FDD106;
+padding: 12px 0 2px 0;
+}
+div.shareweblist h3.content0{
+font-size: 12px; 
+font-weight: bold;
+margin: 0px;
+}
+div.shareweblist h3.content1{
+margin: 0px;
+}
+div.shareweblist h3.content2{
+margin: 0px 0px 0px 40px;
+}
+div.shareweblist h3.content3{
+margin: 0px 0px 0px 60px;
+}
+div.shareweblist h3.content4{
+margin: 0px 0px 0px 80px;
+}
+
+div.sharewebnavigation{
+width: 100%;
+float: left;
+padding-top: 5px;
+}
+
+span.lefthistoryback{
+background: url(arrow_nav_1.gif) no-repeat left -3px;
+float: left;
+padding-left: 12px;
+text-decoration: underline;
+}
+
+span.lefthistorytop{
+background: url(arrow_nav_1.gif) no-repeat left -3px;
+float: right;
+padding-left: 12px;
+text-decoration: underline;
+}
+
+span.lefthistorytop a, span.lefthistoryback a,span.lefthistorytop a:visited, span.lefthistoryback a:visited{
+text-decoration: underline;
+color: #000;
+}
+
+span.lefthistorytop a:hover, span.lefthistoryback a:hover{
+text-decoration: none;
+color: #666;
+}
+
+/* end */
+
+p.anchors{
+padding-bottom: 5px;
+}
+
+a.blocknowrap, a.blocknowrap:visited{
+white-space: nowrap;
+line-height: 20px;
+padding: 2px 8px 3px 0;
+border-left: solid 1px white;
+text-decoration: underline;
+font: bold 11px Arial;
+color: #000;
+}
+
+a.blocknowrap:visited{
+color: #666;
+}
+
+a.blocknowrap:hover{
+color: #666;
+text-decoration: none;
+}
+
+form#ShareWebform{
+border: 1px solid #e2e0e0; 
+margin: 0px 0px 20px; 
+padding: 4px; 
+background-color: #efefef;
+width: 99%;
+clear: both;
+float: left;
+}
+
+form#ShareWebform h2{
+font: bold 11px Arial;
+color: #000;
+padding: 3px 10px 0 7px;
+float: left;
+margin: 2px 0 0 0;
+}
+
+form#ShareWebform div h2{
+padding: 3px 10px 0 0px;
+width: 75px; 
+}
+
+form#ShareWebform p{
+font: 11px Arial;
+color: #000;
+padding: 5px 0 5px 7px;
+display: block;
+clear: left;
+}
+
+form#ShareWebform div label{
+float: left;
+padding: 3px 3px 0 0;
+font: 11px Arial;
+}
+
+form#ShareWebform input.top{ 
+margin-top: 0px; /* FF */
+}
+
+form#ShareWebform select, form#ShareWebform input{
+margin: 0 8px 0 8px;
+}
+
+span#ShareWebformGo{
+margin: 10px 0 10px 250px ;
+float: left;
+}
+
+form#ShareWebform div{
+display: block;
+border-bottom: 1px solid #e2e0e0;
+float: left;
+width: 99%;
+padding: 4px 3px 4px 7px;
+}
+
+.helpshareweb{
+display: block;
+font: 11px Arial;
+text-decoration: underline;
+}
+
+form#ShareWebform span#helpsharewebicon{
+width: 42px;
+height: 16px;
+float: left;
+background: url(helpicon.gif) no-repeat right;
+padding: 3px 0 0 0;
+}
+form#ShareWebform span#helpsharewebicon a, form#ShareWebform span#helpsharewebicon a:visited{
+color: #666;
+text-decoration: underline;
+}
+form#ShareWebform span#helpsharewebicon a:hover{
+text-decoration: none;
+}
+
+form#ShareWebform div#third label.first select, form#ShareWebform div#fourth label.first select{
+width: 80px;
+}
+
+/* displaying elements in form */
+
+form#ShareWebform div#first label.first, form#ShareWebform div#first label.third{
+/* display: none;  or visibility: hidden; */
+}
+
+form#ShareWebform div#fourth label.third{
+display: none;
+}
+
+form#ShareWebform div#first label.second input{
+width: 100px;
+}
+/******************************************************************************/

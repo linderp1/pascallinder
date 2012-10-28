@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommitComments>	<CommitComment>Corrected DB test query.</CommitComment>
+	<CommitComment>Reorganized new jars (common-dbcp, commons-pool)
+Add DB connection test action (TestConnectAction)</CommitComment>
+	<CommitComment>Add TestConnectAction action
+Reorganized new JARs (commons-dbcp, commons-pool)-&gt; WEB-INF/lib</CommitComment>
+	<CommitComment>added css files</CommitComment>
+	<CommitComment>Added mysql support (mysql-connector-java-5.0.8-bin.jar)
+1. Drag and drop jar into project root
+2. Configure Build Path
+3. Selected the new jar form the availabe jar list
+-&gt; the jar appears then in the &quot;Libraries&quot; folder with the small yoghurt icon :-)</CommitComment>
+	<CommitComment>initial checkin</CommitComment>
+</CommitComments>

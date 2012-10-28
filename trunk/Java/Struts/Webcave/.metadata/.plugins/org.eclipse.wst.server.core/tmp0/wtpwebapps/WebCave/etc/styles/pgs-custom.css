@@ -1,0 +1,107 @@
+
+/* General Layout -----------------------------------------------  */
+td.genLayoutLeftMenu { background-color:#D5E7EC; }
+
+
+/* Content AREA --------------------------------------------------- */
+span.teaserhead{ background-color: #73AFC1; }
+span.heading1Function, h1.heading1Function{ color:#73AFC1;}
+span.heading2Function, h2.heading1Function{ color:#73AFC1;}
+div.separatorFuctionColor { background-color:#73AFC1; width:100%; height:1px; border-top:3px solid white; border-bottom:3px solid white;}
+
+div.pgnewstitlefull { background-color: #73AFC1; color:#FFFFFF; }
+div.pgnewsarchive { background-color: #73AFC1; color:#FFFFFF; } 
+
+div.coverstory { background-color:#D5E7EC; }
+td.headercell { background-color:#D5E7EC; } 
+
+div.sitemap a { background-image:url(images/arrow_nav_4.gif); }
+div.pgnewsitem { background-image:url(images/arrow_nav_4.gif); }
+
+/* Left Menu ----------------------------------------------------  */
+div.leftNav1 a { background-color:#A4CBD7; border-bottom: 1px solid #73AFC1; }
+div.leftNav2 a { background-color:#D5E7EC; }
+div.leftNav3 a { background-color:#D5E7EC; }
+div.leftNav4 a { background-color:#D5E7EC; }
+
+
+div.leftNav1active a { background-color:#73AFC1; border-bottom: 1px solid #73AFC1; }
+div.leftNav2active a { background-image:url(/images/arrow_nav_4.gif); background-color:#D5E7EC; border-bottom: 1px solid #D5E7EC; }
+div.leftNav3active a { background-image:url(/images/arrow_nav_4.gif); background-color:#D5E7EC; border-bottom: 1px solid #D5E7EC; }
+div.leftNav4active a { background-image:url(/images/arrow_nav_4.gif); background-color:#D5E7EC; border-bottom: 1px solid #D5E7EC; }
+
+
+div.leftNav1 a:hover { background-color:#73AFC1; }
+div.leftNav2 a:hover { background-color:#73AFC1; }
+div.leftNav3 a:hover { background-color:#73AFC1; }
+div.leftNav4 a:hover { background-color:#73AFC1; }
+
+div.leftNav1active a:hover { background-color:#73AFC1; border-bottom: 1px solid #73AFC1; }
+div.leftNav2active a:hover { background-color:#73AFC1; border-bottom: 1px solid #73AFC1; }
+div.leftNav3active a:hover { background-color:#73AFC1; border-bottom: 1px solid #73AFC1; }
+div.leftNav4active a:hover { background-color:#73AFC1; border-bottom: 1px solid #73AFC1; }
+
+
+
+
+
+/* AREA Top Navigation --------------------------------------------------- */
+.pgareaheaderbar { background-color: #A4CBD7; }
+div.topPGArea { border-color: #A4CBD7; }
+span.topPGArea a:hover { background-color:#D5E7EC; }
+.bgColorA { background-color:#73AFC1 };
+
+
+
+/*********************************** Line Navigation ****************************/
+#navline2 { background-color:#73AFC1;}
+#navline3 { background-color:#A4CBD7;}
+#navarrow2 { background-color:#73AFC1; }
+#navarrow3 { background-color:#A4CBD7; }
+
+/* Left-Hand Navigation: Fixed Items --------------------------------------------------  */
+div.leftLinks 	{ clear:both; border-top: 3px solid white; width: 174px; }
+div.leftLinks a	{ display:block; text-decoration:none; border-bottom: 1px solid #A4CBD7; padding:3px 10px 3px 20px;	color: #000000;	width: 174px; }
+div.leftLinks a:hover { background-color:#73AFC1; text-decoration: none; }
+
+
+/* calendar */
+.caltitle {font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:16px; font-weight:bold;}
+.calmenu {font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:bold;}
+.calday {background-color:#73AFC1; color:#111111; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:bold;}
+.calitem {background-color:#A4CBD7; color:#111111; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px;}
+.calitemtoday {background-color:#73AFC1; color:#111111; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px;}
+.calitemnow {font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px; text-decoration:none}
+.calitemnow:hover {font-size:11px; font-family: Arial, Helvetica, sans-serif;  text-decoration:underline}
+
+.Redcal{color:Red; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+.Redcal:hover{color:Red; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}
+.Greencal{color:Green; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+.Greencal:hover{color:Green; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}
+.Blackcal{color:Black; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+.Blackcal:hover{color:Black; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}
+.Yellowcal{color:#CCCC00; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+.Yellowcal:hover{color:#CCCC00; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}
+.cal{font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+/*.cal:hover{font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}*/
+.Bluecal{color:Blue; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+.Bluecal:hover{color:Blue; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}
+.LightBluecal{color:Blue; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:none}
+.LightBluecal:hover{color:Blue; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:12px; font-weight:normal;text-decoration:underline}
+.Blueholcal{color:Blue; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px; font-weight:normal;text-decoration:none}
+.Blueholcal:hover{color:Blue; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px; font-weight:normal;text-decoration:underline}
+.Blackholcal{color:Black; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px; font-weight:normal;text-decoration:none}
+.Blackholcal:hover{color:Black; font-family:"Arial","MS Sans Serif","Helv","Helvetica"; font-size:11px; font-weight:normal;text-decoration:underline}
+/* calendar end */
+
+/* LLconnector */
+div.shareweblist h1.content{ 
+color: #73AFC1;
+}
+div.shareweblist h3{
+border-bottom: solid 1px #73AFC1;
+}
+
+span.lefthistoryback, span.lefthistorytop{
+background: url(images/arrow_nav_4.gif) no-repeat left -3px;
+}
