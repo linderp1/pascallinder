@@ -1,0 +1,5 @@
+http://www.laliluna.de/first-steps-using-struts-tutorial.html
+
+Struts IDE:
+http://amateras.sourceforge.jp/cgi-bin/fswiki_en/wiki.cgi?page=StrutsIDE
+https://amateraside.dev.java.net/

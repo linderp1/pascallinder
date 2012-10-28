@@ -1,0 +1,385 @@
+/* Left Menu ----------------------------------------------------  */
+div.leftNav1 a {
+    background-color: #a4cbd7;
+    border-bottom: 1px solid #73afc1;
+}
+
+div.leftNav2 a {
+    background-color: #d5e7ec;
+}
+
+div.leftNav3 a {
+    background-color: #d5e7ec;
+}
+
+div.leftNav4 a {
+    background-color: #d5e7ec;
+}
+
+/* ******************************
+ *	STYLES FROM ROCHE INTRANET
+ ****************************** */
+div.leftLinks {
+    clear: both;
+    border-top: 3px solid white;
+    width: 174px;
+}
+
+div.leftLinks a {
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #a4cbd7;
+    padding: 3px 10px 3px 20px;
+    color: #000000;
+    width: 174px;
+}
+
+div.leftLinks a:hover {
+    background-color: #73afc1;
+    text-decoration: none;
+}
+
+td.genLayoutLeftMenu {
+    width: 174px;
+    height: 500px;
+    vertical-align: top;
+    background-color: #d5e7ec;
+}
+
+/* ******************************
+ *	SEARCH RESULT RENDERING
+ ****************************** */
+TABLE.searchResult {
+    background: #d5e7ec;
+}
+
+TR.evenResultRow {
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    background: #f8f8f8;
+}
+
+TR.oddResultRow {
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    background: #fefefe;
+}
+
+a.pageAlphaNavigation, a.pageAlphaNavigation:visited {
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    text-decoration: underline;
+}
+
+a.linkedColumnValue {
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    text-decoration: underline;
+}
+
+a.linkedColumnValue:hover {
+    font-size: 11px;
+    font-family: arial;
+    font-weight: bold;
+    color: #4d4f88;
+    text-decoration: underline;
+}
+
+a.linkedColumnValue:active {
+    font-size: 11px;
+    font-family: arial;
+    font-weight: bold;
+    color: #4d4f88;
+    text-decoration: underline;
+}
+
+a.linkedColumnValue:visited {
+    font-size: 11px;
+    font-family: arial;
+    font-weight: normal;
+    color: #B0B0B0;
+    text-decoration: underline;
+}
+
+A {
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+	text-decoration: none;
+}
+
+A.searchResultNavigation {
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #000454;
+}
+
+/* ******************************
+ *	FORM RENDERING
+ ****************************** */
+TD.formFieldLabel {
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    background: #d5e7ec;
+    width: 200px;
+}
+
+TD.formFieldValue {
+    font-weight: normal;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    background: #d5e7ec;
+}
+
+TD.formButtonsPanel {
+    color: #4d4f88;
+    background: #d5e7ec;
+    height: 50px;
+}
+
+TD.form {
+    font-weight: normal;
+    font-size: 10px;
+    font-family: arial;
+    color: #4d4f88;
+    background: #d5e7ec;
+}
+
+TD.formTitle {
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    background: #d5e7ec;
+}
+
+TD.validationProblem {
+    font-weight: normal;
+    font-size: 10px;
+    font-family: arial;
+    color: #d98080;
+}
+
+.defaultText {
+    font-weight: normal;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+}
+
+TH {
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #000000;
+}
+
+.sorted {
+}
+
+.sortable {
+    background-image: url(/qweb/images/arrow_off.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.order1 {
+    background-image: url(/qweb/images/arrow_down.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.order2 {
+    background-image: url(/qweb/images/arrow_up.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+/* ******************************
+ *	FORM ELEMENTS
+ ****************************** */
+SELECT {
+    font-style: normal;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+}
+
+TEXTAREA {
+    font-weight: normal;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    padding-left: 3px;
+    border: 1px ridge #73afc1;
+}
+
+INPUT.button {
+    font-size: 11px;
+    font-family: arial;
+    color: #000454;
+    background-color: #a4cbd7;
+    border: 1px ridge #73afc1;
+    width: 75px;
+}
+
+INPUT.text {
+    width:140px;
+    font-weight: normal;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    padding-left: 3px;
+    border: 1px ridge #73afc1;
+}
+
+/* ******************************
+ *	COMMON DIALOG RENDERING
+ ****************************** */
+TABLE.messageDialog {
+    border: 0px;
+}
+
+TD.messageDialogTitle {
+    font-family: arial;
+    font-weight: bolder;
+    font-size: 11px;
+    color: #000454;
+    background: #E0E0E0;
+}
+   
+TD.message {
+    font-family: arial;
+    font-weight: normal;
+    font-size: 11px;
+    color: #000454;
+    background: #F0F0F0;    
+}
+
+DIV.scrollpane {
+    border: 1px solid #d5e7ec;
+    height: 480px;
+    width: 815px;
+    overflow: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    background: #FBFBFB;
+}
+
+DIV.searchResultFooter {
+    width: 815px;
+}
+
+.searchResultFooterText {
+    font-style: normal;
+    font-size: 10px;
+    font-family: arial;
+    color: #4d4f88;
+}
+    
+LEGEND {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #000454;
+    padding-bottom: 6px;
+}
+
+FIELDSET {
+    padding-top: 5px;
+}
+
+TD.content {
+    padding-left: 10px;
+    padding-top: 10px
+}
+
+TD.title {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: #000000;
+    background: #73afc1;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+
+TD.formCaption {
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #000454;
+}
+
+CAPTION {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: arial;
+    color: #000454;
+}
+
+TD.default {
+    font-style: normal;
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+}
+
+TD.loginInfo {
+    font-style: normal;
+    font-size: 10px;
+    font-family: arial;
+    color: #d98080;
+    background: #d5e7ec;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 5px;
+}
+
+A.logout {
+    font-style: bold;
+    font-size: 10px;
+    font-family: arial;
+    color: #b20000;
+	text-decoration: none;
+}
+
+A.externalLink {
+    font-weight: bold;
+    font-size: 11px;
+    font-family: arial;
+    color: #000454;
+}
+
+.exportlinks {
+    font-style: normal;
+    font-size: 10px;
+    font-family: arial;
+    color: #4d4f88;
+}
+
+.activeLims {
+    font-size: 11px;
+    font-family: arial;
+    font-weight: bold;
+    color: #4d4f88;
+}
+
+A.inactiveLims {
+    font-size: 11px;
+    font-family: arial;
+    color: #4d4f88;
+    text-decoration: none;
+}

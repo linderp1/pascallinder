@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+<server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Tomcat v6.0 Server at localhost-config" deployDir="wtpwebapps" hostname="localhost" id="20.04.08_23_352" name="Tomcat v6.0 Server at localhost" runtime-id="Apache Tomcat v6.0" server-type="org.eclipse.jst.server.tomcat.60" server-type-id="org.eclipse.jst.server.tomcat.60" testEnvironment="true" timestamp="13">
+<list key="modules" value0="WebCave::org.eclipse.jst.jee.server:WebCave::jst.web::2.5"/>
+<list key="enabled-optional-publish-tasks" value0="20.04.08_23_352|Update context root for Web module WebCave"/>
+</server>
+</servers>
