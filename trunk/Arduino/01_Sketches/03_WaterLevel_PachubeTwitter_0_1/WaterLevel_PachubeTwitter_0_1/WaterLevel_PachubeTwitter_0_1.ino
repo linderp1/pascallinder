@@ -47,8 +47,9 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
 // fill in an available IP address on your network here,
 // for manual configuration:
-IPAddress ip(192,168,0,99);
-IPAddress gateway(192,168,0,1);
+IPAddress ip(192,168,1,99);
+//IPAddress dns(192,168,1,1);
+IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
 //byte gateway[] = { 192, 168, 0, 1 };			// neccessary to get access to the internet via your router
 //byte subnet[] = { 255, 255, 255, 0 };
@@ -118,7 +119,7 @@ void setup() {
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // Configure manually:
-    Ethernet.begin(mac, ip);
+    Ethernet.begin(mac, ip, dns, gateway, subnet);
   }
   // UDP
   Udp.begin(localPort);
@@ -132,10 +133,7 @@ void setup() {
   setSyncInterval(NTP_Update_Interval);
 }
 
-void loop() {
-  // read the analog sensor:
-  //int sensorReading = analogRead(A0);   
-
+void loop() {  
   // if there's incoming data from the net connection.
   // send it out the serial port.  This is for debugging
   // purposes only:
@@ -170,9 +168,9 @@ void loop() {
    inches = microsecondsToInches(duration);
    cm = microsecondsToCentimeters(duration); 
    iFillness = (cm - lLevelMin) / (lLevelFor1PercFillness-1 );
-  
    delay(100);
    
+   // get current time
    time_t t = now();
    intHour = hour(t);
    intMinutes = minute(t);
@@ -181,9 +179,9 @@ void loop() {
   // first reound then send to Twitter
   if (firstround)
   {
-    Serial.print("connecting to Twitter ... Hour ");
+    Serial.print("connecting to Twitter ... Time: ");
     Serial.print(intHour);
-    Serial.print(" minutes ");
+    Serial.print(":");
     Serial.println(intMinutes);
     if (twitter.post(msg)) 
     {
@@ -226,7 +224,7 @@ void loop() {
    Serial.print("%");
     Serial.println();
     Serial.println(" >>>      <<<");
-    Serial.println(" >>> SEND <<<");
+    Serial.println(" >>> Sent information to Pachube <<<");
     Serial.println(" >>>      <<<");
     //Serial.println();
     sendData(cm);
@@ -234,7 +232,14 @@ void loop() {
   // store the state of the connection for next time through
   // the loop:
   lastConnected = client.connected();
+  //
+  Serial.println(" ");
+  Serial.println("wait a minute until next round....zZzZzZ");
+  Serial.println(" ");
+  // wait a minute until next round
+  delay(60000);
 }
+// end loop
 
 // this method makes a HTTP connection to the server:
 void sendData(int thisData) {
