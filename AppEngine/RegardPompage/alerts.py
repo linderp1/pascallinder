@@ -39,9 +39,6 @@ def SendAlert(alertType, criticality, value):
 		# A special note here - the SENDER address must be the address
 		# you used to create the application, or an address you have
 		# given administration privileges.
-		#
-		# Remark: sms dot roche dot com does not work anymore since Gmail
-		#  +4179xxxxxxx@sms dot roche dot com
 		mail.send_mail(
 			sender = UserPrefs.emailAddress,
 			to = address,
