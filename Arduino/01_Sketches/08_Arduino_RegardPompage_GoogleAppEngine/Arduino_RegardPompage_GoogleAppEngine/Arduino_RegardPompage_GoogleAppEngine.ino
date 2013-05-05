@@ -115,6 +115,14 @@ int iFillness;
 // this constant won't change.  It's the pin number of the sensor's output:
 const int pingPin = 7;
 
+// variable used for counting purpose
+// This is the frequency of measurements of the ultrasonic sensor
+int loopTime = 10000; // equal 10 seconds = 10000 mseconds
+// This is the frequency of email sending. Only every 15 minutes if an alert keeps active. 
+// Reason: Google App Engine (free version) allows only 1000 emails per 24 hours (i.e. 96 mails per day are fine)
+long emailSendingMinPeriod = 900000; // in miliseconds. There are 900 seconds in 15 mninutes (15*60)
+// In fact, with all loops and wait times within the whole code, this is rather 20 minutes instead of 15 => still OK :-)
+long counter = emailSendingMinPeriod + 1; // counter used to determine if an alert email can be send
 
 void setup() {
   // start serial port:
@@ -191,19 +199,26 @@ void loop() {
    // if the water level gets equal or below a certain level (i.e. the distance measured by the ultrasound sensor gets shorter)
    // then an alert must be send
    if (cm <= lLevelMax) {
-      sendAlert("email", "bad", cm);
-      //Serial.println("> Mail sent");
-      delay(1000);
-      // commented "Text" messaging for the time being .... 
-      //sendAlert("text", "bad", cm);
-      //Serial.println("> Text sent");
+      if  (counter > emailSendingMinPeriod) {
+          sendAlert("email", "bad", cm);
+          //Serial.println("> Mail sent");
+          delay(1000);
+          // commented "Text" messaging for the time being .... 
+          //sendAlert("text", "bad", cm);
+          //Serial.println("> Text sent");
+          counter = 0;          
+      } else {
+        counter = counter + loopTime;
+      }
    }
+   
    
    // wait 10 seconds until next round
    //Serial.println(" ");
    //Serial.println("wait 10 seconds until next round....zZzZzZ");
    //Serial.println(" ");
-   delay(10000);
+   delay(loopTime);
+   //Serial.println("end wait time");
 }
 // end loop
 
