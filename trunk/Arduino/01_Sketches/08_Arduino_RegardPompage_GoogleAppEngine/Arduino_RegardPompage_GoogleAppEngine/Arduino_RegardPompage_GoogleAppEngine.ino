@@ -12,17 +12,17 @@
 // Special thanks to Marco for helping developing the formula in Excel  :-)
 //
 // A next release on which I settled almost 2 years later with an interface to
-// Cosm (formerly called Pachube) followed by a version that was also tweeting
-// the measured value :-)
+// Xively (formerly called Pachube and then Cosm) followed by a version that
+// was also tweeting the measured value :-)
 //
 // Next serious round of development was started in May 2013 with the discovery
 // of a nice tutorial about using the Arduino together with the Google App Engine.
 // It is possible to configure an email and a SMS address to which the measured
 // value has to be send if some critical value is reached (threshold)
 // see http://regardpompage.appspot.com
-// Cosm interface was also kept as it shows a nice overview of the value over time
-// see https://cosm.com/feeds/12155
-// remark: Cosm can handle multiple triggers to tweet or send a SMS when a given
+// Xively interface was also kept as it shows a nice overview of the value over time
+// see https://xively.com/feeds/12155
+// remark: Xively can handle multiple triggers to tweet or send a SMS when a given
 // value is reached. No specific Tweeter code is therefore required anymore
 //
 // This code is the official 1st version used in real (v1.0)
@@ -59,10 +59,11 @@ http://arduino.cc/en/Tutorial/PachubeClient
 //#include <Client.h>
 #include <Ethernet.h>
 #include <HttpClient.h>
-#include <Cosm.h>
+#include <Xively.h>
 
-#define APIKEY         "641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" // replace your pachube api key here
-#define FEEDID         12155 // replace your feed ID
+#define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
+//"641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" // replace your pachube api key here
+#define FEEDID         1464880832  //12155 // replace your feed ID
 #define USERAGENT      "WaterLevel" // user agent is the project name
 
 // assign a MAC address for the ethernet controller.
@@ -79,25 +80,26 @@ EthernetClient client;
 // Define the string for our datastream ID
 char sensorId[] = "Level";
 
-CosmDatastream datastreams[] = {
-  CosmDatastream(sensorId, strlen(sensorId), DATASTREAM_FLOAT),
+XivelyDatastream datastreams[] = {
+  XivelyDatastream(sensorId, strlen(sensorId), DATASTREAM_FLOAT),
 };
 
 // Wrap the datastream into a feed
-CosmFeed feed(FEEDID, datastreams, 1);
-CosmClient cosmclient(client);
+XivelyFeed feed(FEEDID, datastreams, 1);
+XivelyClient xivelyclient(client);
 
-// Pachube/Cosm server's address
+// Pachube/Cosm/Xively server's address
+// Not required anymore, server names are packed in the library directly
 //const char* serverPachube = "www.pachube.com";
 //const char serverPachube[] = "www.pachube.com";
 //Google App Engine (GAE) application address
 const char* serverGAE = "http://regardpompage.appspot.com";
 
 unsigned long lastConnectionTime = 0;          // last time you connected to the server, in milliseconds
-const unsigned long connectionInterval = 15000;      // delay between connecting to Cosm in milliseconds
+const unsigned long connectionInterval = 15000;      // delay between connecting to Xively in milliseconds
 // those 2 normally not needed anymore .... to eb checked..
 boolean lastConnected = false;                 // state of the connection last time through the main loop
-const unsigned long postingInterval = 100;   //delay between updates to Pachube.com
+const unsigned long postingInterval = 100;   //delay between updates to Xively
 
 
 // Variables used for the PING))) sensor
@@ -189,8 +191,8 @@ void loop() {
    //Serial.println();
    //Serial.println(" >>> Begin sending information to Pachube <<<");
    
-   // Send the measured tank value to Cosm (aka Pachube)
-   sendData2Pachube(cm);
+   // Send the measured tank value to Xivelky (formerly called Pachube and then Cosm)
+   sendData2Xively(cm);
    lastConnected = client.connected();
 
    //
@@ -280,15 +282,15 @@ void httpRequest(String link) {
 }
 
 
-// send the supplied value to Cosm, printing some debug information as we go
-void sendData2Pachube(int sensorValue) {
+// send the supplied value to Xively, printing some debug information as we go
+void sendData2Xively(int sensorValue) {
   datastreams[0].setFloat(sensorValue);
 
   //Serial.print("Read sensor value ");
   //Serial.println(datastreams[0].getFloat());
 
-  //Serial.println("Uploading to Cosm");
-  int ret = cosmclient.put(feed, APIKEY);
+  //Serial.println("Uploading to Xively");
+  int ret = xivelyclient.put(feed, APIKEY);
   //Serial.print("PUT return code: ");
   //Serial.println(ret);
 
