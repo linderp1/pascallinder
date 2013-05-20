@@ -30,19 +30,30 @@ def SendAlert(alertType, criticality, value):
 		if criticality == 'bad':
 			msg = 'The water level in the pump reached a critical value! '
 			msg = msg + ' Current level = ' + str(value)
-		else:
+		elif criticality == 'good':
 			msg = 'The water level in the pump reached a normal value. '
 			msg = msg + ' Current level = ' + str(value)
+		elif criticality == 'reset':
+			msg = 'The Arduino was just reset!! '
+		else:
+			msg = 'no critical message...'
 
 			
 		# This sends the email.
 		# A special note here - the SENDER address must be the address
 		# you used to create the application, or an address you have
 		# given administration privileges.
-		mail.send_mail(
+		if criticality == 'bad' or criticality == 'good':
+			mail.send_mail(
 			sender = UserPrefs.emailAddress,
 			to = address,
 			subject = 'Pumpi Alert!' + ' water height: ' + value + 'cm',
+			body = msg)
+		else:
+			mail.send_mail(
+			sender = UserPrefs.emailAddress,
+			to = address,
+			subject = 'Pumpi Alert! - ' + criticality,
 			body = msg)
 			
 		# Message used as the response
