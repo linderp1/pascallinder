@@ -126,13 +126,19 @@ long emailSendingMinPeriod = 900000; // in miliseconds. There are 900 seconds in
 // In fact, with all loops and wait times within the whole code, this is rather 20 minutes instead of 15 => still OK :-)
 long counter = emailSendingMinPeriod + 1; // counter used to determine if an alert email can be send
 
+unsigned long time;
+
 void setup() {
+  //set pin 8 to high beofr anything else. This pin will be used to reset the Arduino
+  digitalWrite(8, HIGH);
+  pinMode(8, OUTPUT);
+  
   // start serial port:
   delay(1000);
   // TO RE-ACTIVATE FOR DEBUGGING !!!!
-  Serial.begin(9600);
+  //Serial.begin(9600);
   // start the Ethernet connection:
- // start the Ethernet connection:
+  // start the Ethernet connection:
   Ethernet.begin(mac, myIP, gateway);
   // give the ethernet module time to boot up:
   delay(1000);  
@@ -141,6 +147,22 @@ void setup() {
 
 
 void loop() {  
+   
+  time = millis();
+  //Serial.print("Running time: ");
+  //Serial.println(time);
+  
+  // DEBUG ONLY , to be removed
+  //sendAlert("email", "bad", 0);
+  
+  // Resetting the Arduino every 12 hours
+  // 12 hours = 720 minutes = 43200 seconds 43200000 milliseconds
+  if (time > 43200000) {
+    //Serial.println("Resetting !!!!");
+    sendAlert("email", "reset", 0);
+    digitalWrite(8, LOW);
+  }
+  
   // if there's incoming data from the net connection.
   // send it out the serial port.  This is for debugging
   // purposes only:
