@@ -1,3 +1,19 @@
+// HTTP libraries
+#include <b64.h>
+#include <HttpClient.h>
+
+// Xively libraries
+#include <CountingStream.h>
+#include <Xively.h>
+#include <XivelyClient.h>
+#include <XivelyDatastream.h>
+#include <XivelyFeed.h>
+
+// Ethernet library
+#include <SPI.h>
+#include <Ethernet.h>
+
+
 //
 // Arduino "Regard de pompage" project
 // -----------------------------------
@@ -55,15 +71,13 @@ http://arduino.cc/en/Tutorial/PachubeClient
  
  */
 
-#include <SPI.h>
-//#include <Client.h>
-#include <Ethernet.h>
-#include <HttpClient.h>
-#include <Xively.h>
-
-#define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
+//#define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
+#define APIKEY         "dQ7cP57zqs3Vtmz3u6egHkbg0XQvMxP7dRbpxPdChUmf3N8l"
 //"641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" // replace your pachube api key here
-#define FEEDID         1464880832  //12155 // replace your feed ID
+
+//#define FEEDID         1464880832  //12155 // replace your feed ID
+#define FEEDID         574117389
+//574117389
 #define USERAGENT      "WaterLevel" // user agent is the project name
 
 // assign a MAC address for the ethernet controller.
