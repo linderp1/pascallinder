@@ -1,3 +1,11 @@
+// Ethernet library
+#include <Dhcp.h>
+#include <Dns.h>
+#include <Ethernet.h>
+#include <EthernetClient.h>
+#include <EthernetServer.h>
+#include <EthernetUdp.h>
+
 // HTTP libraries
 #include <b64.h>
 #include <HttpClient.h>
@@ -9,9 +17,8 @@
 #include <XivelyDatastream.h>
 #include <XivelyFeed.h>
 
-// Ethernet library
+
 #include <SPI.h>
-#include <Ethernet.h>
 
 
 //
@@ -70,27 +77,36 @@ http://arduino.cc/en/Tutorial/PachubeClient
  This code is in the public domain.
  
  */
+ 
+/* Update April 19th 2016
+The Arduino stoppped working since 8 days :-(
+Replaced the Arduino Duemilanove with a new Arduino Uno, including a new Ethernet shield
+from WizNet: http://www.wiznet.co.kr/product-item/w5500-ethernet-shield/
+To make it work I have to downgrade the Arduino IDe from 1.6.8 to 1.6.4 and follow the instruction from the following
+forum: https://embeddist.wordpress.com/2015/05/21/wiz-ethernet-library-for-arduino-ide-1-6-4/
+as the instructions from vendor where pointing to a git repository where libs where for the 1.0.x.or 1.5.x IDE versions.
 
-//#define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
-#define APIKEY         "dQ7cP57zqs3Vtmz3u6egHkbg0XQvMxP7dRbpxPdChUmf3N8l"
-//"641a9f8761f08b2185a03e8408d0b2a8fc42cffa6f2d642f3f5f7c54eac9f182" // replace your pachube api key here
+IMPORTANT: to make it work, the "Ethernet" directory form the extracted fiels had to be copied into the ../Arduino/libraries" folder
+*/
 
-//#define FEEDID         1464880832  //12155 // replace your feed ID
-#define FEEDID         574117389
-//574117389
+
+#define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
+#define FEEDID         1464880832  //12155 // replace your feed ID
 #define USERAGENT      "WaterLevel" // user agent is the project name
 
 // assign a MAC address for the ethernet controller.
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
 // fill in your address here:
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte myIP[] = { 192, 168, 1, 99 };
-byte gateway[] = { 192, 168, 1, 1 };
+byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
+// fill in an available IP address on your network here,
+// for manual configuration:
+IPAddress ip(192, 168, 1, 99);
+IPAddress gateway(192, 168, 1, 1);
+IPAddress subnet(255, 255, 255, 0);
+IPAddress myDns(192, 168, 1, 1);
 
-// Pachube (Cosm) and Google App engine client
 EthernetClient client;
 
-// Initialize the Cosm library
 // Define the string for our datastream ID
 char sensorId[] = "Level";
 
@@ -152,8 +168,8 @@ void setup() {
   // TO RE-ACTIVATE FOR DEBUGGING !!!!
   //Serial.begin(9600);
   // start the Ethernet connection:
-  // start the Ethernet connection:
-  Ethernet.begin(mac, myIP, gateway);
+  //Ethernet.begin(mac, myIP, gateway);
+  Ethernet.begin(mac, ip, myDns, gateway, subnet);
   // give the ethernet module time to boot up:
   delay(1000);  
   //Serial.println("Setup complete");
