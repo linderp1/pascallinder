@@ -1,3 +1,4 @@
+
 /*
   This program makes uses of an Arduino to display
   values for Xively IoT data provider.
@@ -38,7 +39,8 @@
 
 #include <SPI.h>
 #include <Ethernet.h>
-#include <EthernetUdp.h>
+//#include <EthernetUDP.h>
+#include <Time.h>
 
 // initialize the LCD with the numbers of the interface pins
 LiquidCrystal lcd(11, 12, 7, 8, 9, 10);
@@ -49,9 +51,10 @@ boolean TickTock = false;
 
 // Enter a MAC address for your controller below.
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
-byte mac[] = {
-  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
-};
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xEE };
+//byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+byte myIP[] = { 192, 168, 1, 100 };
+byte gateway[] = { 192, 168, 1, 1 };
 
 unsigned int localPort = 8888;       // local port to listen for UDP packets
 
@@ -68,26 +71,28 @@ EthernetUDP Udp;
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
+  lcd.print("hello, world!");
 
   // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
-
+  //Serial.begin(9600);
+  //while (!Serial) {
+  //  ; // wait for serial port to connect. Needed for native USB port only
+  //}
   // start Ethernet and UDP
-  if (Ethernet.begin(mac) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP");
-    // no point in carrying on, so do nothing forevermore:
-    for (;;)
-      ;
-  }
-  Udp.begin(localPort);
+  Ethernet.begin(mac, myIP, gateway);
+  // give the ethernet module time to boot up:
+  delay(2000); 
+  //Udp.begin(localPort);
+  // give the ethernet module time to boot up:
+  //delay(1000); 
 }
 
 void loop() {
   String sHour, sMinutes, sSeconds;
-  sendNTPpacket(timeServer); // send an NTP packet to a time server
+
+  EthernetUDP udp;
+  unsigned long unixTime = ntpUnixTime(udp);
+  /*sendNTPpacket(timeServer); // send an NTP packet to a time server
 
   // wait to see if a reply is available
   delay(1000);
@@ -103,49 +108,49 @@ void loop() {
     // combine the four bytes (two words) into a long integer
     // this is NTP time (seconds since Jan 1 1900):
     unsigned long secsSince1900 = highWord << 16 | lowWord;
-    Serial.print("Seconds since Jan 1 1900 = ");
-    Serial.println(secsSince1900);
+    //Serial.print("Seconds since Jan 1 1900 = ");
+    //Serial.println(secsSince1900);
 
     // now convert NTP time into everyday time:
-    Serial.print("Unix time = ");
+    //Serial.print("Unix time = ");
     // Unix time starts on Jan 1 1970. In seconds, that's 2208988800:
     const unsigned long seventyYears = 2208988800UL;
     // subtract seventy years:
     unsigned long epoch = secsSince1900 - seventyYears;
     // print Unix time:
-    Serial.println(epoch);
+    //Serial.println(epoch);
 
     // print the hour, minute and second:
-    Serial.print("The UTC time is ");       // UTC is the time at Greenwich Meridian (GMT)
-    Serial.print((epoch  % 86400L) / 3600); // print the hour (86400 equals secs per day)
+    //Serial.print("The UTC time is ");       // UTC is the time at Greenwich Meridian (GMT)
+    //Serial.print((epoch  % 86400L) / 3600); // print the hour (86400 equals secs per day)
     sHour=String((epoch  % 86400L) / 3600);
-    Serial.print(':');
+    //Serial.print(':');
     if (((epoch % 3600) / 60) < 10) {
       // In the first 10 minutes of each hour, we'll want a leading '0'
-      Serial.print('0');
+      //Serial.print('0');
       sMinutes="0";
     }
-    Serial.print((epoch  % 3600) / 60); // print the minute (3600 equals secs per minute)
+    //Serial.print((epoch  % 3600) / 60); // print the minute (3600 equals secs per minute)
     sMinutes=sMinutes+((epoch  % 3600) / 60);
-    Serial.print(':');
+    //Serial.print(':');
     if ((epoch % 60) < 10) {
       // In the first 10 seconds of each minute, we'll want a leading '0'
-      Serial.print('0');
+      //Serial.print('0');
       sSeconds="0";
     }
-    Serial.println(epoch % 60); // print the second
+    //Serial.println(epoch % 60); // print the second
     sSeconds=sSeconds+(epoch % 60);
   }
   // wait ten seconds before asking for the time again
-  delay(10000);
-  Ethernet.maintain();
+  delay(1000);
+  Ethernet.maintain();*/
   // end of ethernet example code
   
   // begin PaL code
   // Print the timestamp to the LCD.
-  lcd.setCursor(0, 0);
+  //lcd.setCursor(0, 0);
 
-  lcd.print(sHour + ":" + sMinutes + ":" + sSeconds);
+  //lcd.print(sHour + ":" + sMinutes + ":" + sSeconds);
   //lcd.print("24/04/2016 16:10");
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
