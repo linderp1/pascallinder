@@ -457,9 +457,21 @@ void loop() {
     // (note: line 1 is the second row, since counting begins with 0):
     // Print a message to the LCD.
     // Print cm value on the 1st line
+    lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
-    
+    // Draw the progress bar wth the percentage value on the 2nd line
+    draw_progressbar(iFillness, 1);
+    delay(2000);
+    lcd.clear();
+    lcd.print("Dist. min: 100cm");
+    // Draw the progress bar wth the percentage value on the 2nd line
+    draw_progressbar(iFillness, 1);
+    delay(4000);
+    lcd.clear();
+    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+    // Draw the progress bar wth the percentage value on the 2nd line
+    draw_progressbar(iFillness, 1);
     //lcd.setCursor(0, 1);
     //lcd.print("cm "); lcd.print(iFillness); lcd.print("%");
     // Draw the progress bar wth the percentage value on the 2nd line
