@@ -49,7 +49,10 @@ XivelyClient xivelyclient(client);
 // initialize the library with the numbers of the interface pins
 // remark: pins 11 and 12 should not be used due to conflict with the Ethernet shield.
 //         therefore, switched to 8 and 9.
-LiquidCrystal lcd(8, 9, 2, 3, 4, 5);
+// LCD AV1624 (ANAG VISION)
+//LiquidCrystal lcd(8, 9, 2, 3, 4, 5);
+// LCD Keypad Shield
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
 /* Const setting the LCD screen size */
 const int LCD_NB_ROWS = 2;
@@ -401,6 +404,17 @@ void draw_progressbar(byte percent, byte line) {
 }
 
 void setup() {
+  /*
+  //ethernet shield reset
+  pinMode(10, OUTPUT);
+  digitalWrite(10, LOW);
+  delay(1000);
+  digitalWrite(10, HIGH);
+  delay(1000);
+  digitalWrite(10, LOW);
+  //digitalWrite(10, HIGH); 
+  */
+  
   // set up the LCD's number of columns and rows:
   lcd.begin(LCD_NB_COLUMNS, LCD_NB_ROWS);
   setup_progressbar();
@@ -410,14 +424,17 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   
-  Serial.println("Reading from Xively example");
-  Serial.println("---------------------------");
+  //Serial.println("Reading from Xively example");
+  //Serial.println("---------------------------");
 
   // start the Ethernet connection:
   Ethernet.begin(mac, ip, myDns, gateway, subnet);
   // give the ethernet module time to boot up:
   delay(1000);  
   Serial.println("Ethernet setup complete");
+  lcd.clear();
+  lcd.print("Ethernet setup complete");
+  delay(1000); 
 }
 
 void loop() {
@@ -429,6 +446,16 @@ void loop() {
   float lLevelFor1PercFillness = lLevelFor100PercFillness/100;
   
   Serial.println("Entering loop");
+  lcd.clear();
+  lcd.print("Entering loop...");
+  
+  for (int i=0; i <110; i=i+10)
+  {
+    draw_progressbar(i, 1);
+    delay(1000);
+    Serial.print("Testing progress bar: "); Serial.println(i);
+  } 
+  
   
   int ret = xivelyclient.get(feed, APIKEY);
   Serial.print("xivelyclient.get returned ");
