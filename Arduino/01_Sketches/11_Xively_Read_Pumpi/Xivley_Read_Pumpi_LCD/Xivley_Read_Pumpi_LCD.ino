@@ -1,3 +1,49 @@
+
+/*
+# Copyright Pascal Linder, May 2016
+#
+# This Arduino sketch fetches the current "Level" value from Xively (FEEDID: 1464880832) approx. every 20 seconds. 
+# The value is displayed on a 2*16 char LCD display (ANAG VISION AV1624)
+#
+# LCD wiring as follows:
+#   LCD RS pin to digital pin 8
+#   LCD Enable pin to digital pin 9
+#   LCD D4 pin to digital pin 4
+#   LCD D5 pin to digital pin 5
+#   LCD D6 pin to digital pin 6
+#   LCD D7 pin to digital pin 7
+#   LCD R/W pin to ground
+#   LCD VSS pin to ground
+#   LCD VCC pin to 5V
+#   LCD V0 (drive) to 10K resistor wiper
+# This gives the following LiquidCrytal library command => LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+# More infos on LCD wiring at: https://www.arduino.cc/en/Tutorial/HelloWorld
+# AV1624 page: http://www.iq-tm.de/astro/EQ6/184594-da-01-ml-LCD_Modul_16x2_Zeichen_LED_de_en.pdf
+# or: http://www.mikrocontroller.net/attachment/61375/lcd_av1624.pdf
+#
+# A special "progress bar" function shows the percentage of filness of the water tank 
+#   105 cm is when it is almost full
+#   122 cm is when it was just emptied by the pump (i.e.distance between the PING sensor and the water level
+#   is at its highest
+#   Used from: https://www.carnetdumaker.net/articles/faire-une-barre-de-progression-avec-arduino-et-liquidcrystal/
+#
+# The percentage (iFillness) is calculated with the following formula: iFillness = (float_value-lLevelMin)/(lLevelFor1PercFillness*-1) where:
+#   float_value => current distance measured by the sensor
+#   lLevelMin => min distance measured when the water is at its highest
+#   lLevelMax => max distance measured when the water is at its lowest (pump has just emptied the tank)
+#   lLevelFor1PercFillness => distance measured for 1 percent of fillness
+#  
+#   Remark: lLevelFor1PercFillness = lLevelFor100PercFillness/100
+#           lLevelFor100PercFillness = lLevelMin-lLevelMax
+#
+# Ethernet (for WIZ Ethernet W5500 shield) libraries where feteched to work with sepcific Arduino IDE version used 1.6.x
+#   The downloaded library (folder Ethernet) had to be placed into Arduino library folder (in the user's document folder)
+#   => on the Mac: Macintosh HD/User/Pascal/Documents/Arduino/libraries/Ethernet
+#   https://github.com/embeddist/WIZ_Ethernet_Library-IDE1.6.x  
+#   A copy of the library was placed into the git repository (under libraries). See https://github.com/linderp1/pascallinder
+#
+*/
+
 #include <LiquidCrystal.h>
 
 // Ethernet library
@@ -45,6 +91,13 @@ XivelyDatastream datastreams[] = {
 XivelyFeed feed(FEEDID, datastreams, 1 /* number of datastreams */);
 EthernetClient client;
 XivelyClient xivelyclient(client);
+
+// Variables used for the PING))) sensor
+  long lLevelMin = 122; // 122cm = low water level (nivean bas = cuve vide) // ** TO BE ADAPTED TO THE TANK PARAMETERS **
+  long lLevelMax = 100; // 105cm = high level (niveau haut = cuve pleine, max autorisé) // ** TO BE ADAPTED TO THE TANK PARAMETER **
+  // Variables used for calculating the %age of tank fillness
+  float lLevelFor100PercFillness = lLevelMin-lLevelMax;
+  float lLevelFor1PercFillness = lLevelFor100PercFillness/100;
 
 // initialize the library with the numbers of the interface pins
 // remark: pins 11 and 12 should not be used due to conflict with the Ethernet shield.
@@ -423,9 +476,6 @@ void setup() {
   lcd.print("Demarrage.......");
   // put your setup code here, to run once:
   Serial.begin(9600);
-  
-  //Serial.println("Reading from Xively example");
-  //Serial.println("---------------------------");
 
   // start the Ethernet connection:
   Ethernet.begin(mac, ip, myDns, gateway, subnet);
@@ -433,32 +483,26 @@ void setup() {
   delay(1000);  
   Serial.println("Ethernet setup complete");
   lcd.clear();
-  lcd.print("Ethernet setup complete");
-  delay(1000); 
-}
-
-void loop() {
-  // Variables used for the PING))) sensor
-  long lLevelMin = 122; // 122cm = low water level (nivean bas = cuve vide) // ** TO BE ADAPTED TO THE TANK PARAMETERS **
-  long lLevelMax = 105; // 105cm = high level (niveau haut = cuve pleine, max autorisé) // ** TO BE ADAPTED TO THE TANK PARAMETER **
-  // Variables used for calculating the %age of tank fillness
-  float lLevelFor100PercFillness = lLevelMin-lLevelMax;
-  float lLevelFor1PercFillness = lLevelFor100PercFillness/100;
+  lcd.print("Ethernet OK!");
   
-  Serial.println("Entering loop");
-  lcd.clear();
-  lcd.print("Entering loop...");
+  delay(1000); lcd.clear();
+  lcd.print("Testing LCD.....");
   
   for (int i=0; i <110; i=i+10)
   {
     draw_progressbar(i, 1);
-    delay(1000);
+    delay(200);
     Serial.print("Testing progress bar: "); Serial.println(i);
+    Serial.println("Now entering the loop");
   } 
+}
+
+void loop() {
   
   
+  Serial.println("Contacting Xively ... ");
   int ret = xivelyclient.get(feed, APIKEY);
-  Serial.print("xivelyclient.get returned ");
+  Serial.print("xivelyclient.get returned HTTP code: ");
   Serial.println(ret);
 
   if (ret > 0)
