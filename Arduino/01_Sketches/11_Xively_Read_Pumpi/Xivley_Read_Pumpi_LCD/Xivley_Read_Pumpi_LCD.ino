@@ -535,7 +535,7 @@ void loop() {
     draw_progressbar(iFillness, 1);
     delay(2000);
     lcd.clear();
-    lcd.print("Dist. min: 100cm");
+    lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
     // Draw the progress bar wth the percentage value on the 2nd line
     draw_progressbar(iFillness, 1);
     delay(4000);
