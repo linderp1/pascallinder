@@ -46,6 +46,13 @@
 
 #include <LiquidCrystal.h>
 
+//#include <Arduino.h>
+//#include <SoftwareSerial.h>
+#include <Debug.h>
+#include <WiFly.h>
+#include <WiFlyClient.h>
+
+/*
 // Ethernet library
 #include <Dhcp.h>
 #include <Dns.h>
@@ -53,6 +60,7 @@
 #include <EthernetClient.h>
 #include <EthernetServer.h>
 #include <EthernetUdp.h>
+*/
 
 // HTTP libraries
 #include <b64.h>
@@ -72,6 +80,7 @@
 #define FEEDID         1464880832  //12155 // replace your feed ID
 #define USERAGENT      "WaterLevel" // user agent is the project name
 
+/*
 // MAC address for your Ethernet shield
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xEE };
 // fill in an available IP address on your network here,
@@ -80,6 +89,20 @@ IPAddress ip(192, 168, 1, 100);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 IPAddress myDns(192, 168, 1, 1);
+*/
+
+//WiFi shield definitions
+#define SSID      "Livebox-6A60"
+#define KEY       "5008apt19"
+#define AUTH      WIFLY_AUTH_WPA2_PSK     // or WIFLY_AUTH_WPA1, WIFLY_AUTH_WEP, WIFLY_AUTH_OPEN
+
+// Pins' connection
+// Arduino       WiFly
+//  2    <---->    TX
+//  3    <---->    RX
+//SoftwareSerial uart(2, 3);
+//WiFly wifly(&uart);
+//WiFly wifly(&Serial1);     // for leonardo, use hardware serial - Serial1
 
 // Define the string for our datastream ID
 char levelId[] = "Level";
@@ -89,7 +112,8 @@ XivelyDatastream datastreams[] = {
 };
 // Finally, wrap the datastreams into a feed
 XivelyFeed feed(FEEDID, datastreams, 1 /* number of datastreams */);
-EthernetClient client;
+//EthernetClient client;
+WiFlyClient client;
 XivelyClient xivelyclient(client);
 
 // Variables used for the PING))) sensor
@@ -467,6 +491,7 @@ void setup() {
   digitalWrite(10, LOW);
   //digitalWrite(10, HIGH); 
   */
+  //uart.begin(9600);
   
   // set up the LCD's number of columns and rows:
   lcd.begin(LCD_NB_COLUMNS, LCD_NB_ROWS);
@@ -478,12 +503,35 @@ void setup() {
   Serial.begin(9600);
 
   // start the Ethernet connection:
-  Ethernet.begin(mac, ip, myDns, gateway, subnet);
+  //Ethernet.begin(mac, ip, myDns, gateway, subnet);
   // give the ethernet module time to boot up:
-  delay(1000);  
-  Serial.println("Ethernet setup complete");
-  lcd.clear();
-  lcd.print("Ethernet OK!");
+  //wifly.begin();
+  delay(3000);  
+  //Serial.println("Ethernet setup complete");
+  
+  Serial.println("Join " SSID );
+  //if (wifly.join(SSID, KEY, AUTH)) {
+  if (client.join(SSID, KEY, AUTH)) {
+    Serial.println("OK");
+    lcd.clear();
+    lcd.print("WiFi OK!");
+  } else {
+    Serial.println("Failed");
+    lcd.clear();
+    lcd.print("WiFi Failed!");
+  }
+  /*
+  Serial.println("Join " SSID );
+  while(!wifly.join(SSID, KEY, AUTH)) {
+    Serial.println("connect network error! try again ...");
+    delay(2000);
+  }
+  */
+
+  //lcd.clear();
+  //lcd.print("Ethernet OK!");
+
+  // part to uncomment later
   
   delay(1000); lcd.clear();
   lcd.print("Testing LCD.....");
@@ -497,10 +545,10 @@ void setup() {
   } 
 }
 
-void loop() {
-  
-  
+void loop() {  
   Serial.println("Contacting Xively ... ");
+  lcd.clear();
+  lcd.print("Contact Xively..");
   int ret = xivelyclient.get(feed, APIKEY);
   Serial.print("xivelyclient.get returned HTTP code: ");
   Serial.println(ret);
