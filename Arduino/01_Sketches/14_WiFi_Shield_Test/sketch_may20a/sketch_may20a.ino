@@ -1,3 +1,13 @@
+#include <_Spi.h>
+#include <Configuration.h>
+#include <Debug.h>
+#include <ParsedStream.h>
+#include <SpiUart.h>
+#include <WiFly.h>
+#include <WiFlyClient.h>
+#include <WiFlyDevice.h>
+#include <WiFlyServer.h>
+
 #include <SPI.h>
 
 
@@ -13,9 +23,7 @@
 #include <HttpClient.h>
 
 #include <SoftwareSerial.h>
-#include <Xively.h>
-#include "WiFly.h"
-#include <WiFlyClient.h>
+
 
 //WiFi shield definitions
 #define SSID      "Livebox-6A60"
