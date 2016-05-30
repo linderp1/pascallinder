@@ -1,4 +1,3 @@
-
 /*
 # Copyright Pascal Linder, May 2016
 #
@@ -49,8 +48,7 @@
 //#include <Arduino.h>
 //#include <SoftwareSerial.h>
 #include <Debug.h>
-#include <WiFly.h>
-#include <WiFlyClient.h>
+
 
 /*
 // Ethernet library
@@ -75,6 +73,16 @@
 
 
 #include <SPI.h>
+#include <WiFly.h>
+
+#include <Configuration.h>
+#include <Debug.h>
+#include <ParsedStream.h>
+#include <SpiUart.h>
+#include <WiFly.h>
+//#include <WiFlyClient.h>  
+//#include <WiFlyDevice.h>
+//#include <WiFlyServer.h>
 
 #define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
 #define FEEDID         1464880832  //12155 // replace your feed ID
