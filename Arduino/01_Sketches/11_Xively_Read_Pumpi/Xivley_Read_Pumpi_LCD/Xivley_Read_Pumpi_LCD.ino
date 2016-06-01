@@ -1,3 +1,8 @@
+#include <Debug.h>
+#include <WiFly.h>
+#include <WiFlyClient.h>
+
+
 /*
 # Copyright Pascal Linder, May 2016
 #
@@ -47,8 +52,6 @@
 
 //#include <Arduino.h>
 //#include <SoftwareSerial.h>
-#include <Debug.h>
-
 
 /*
 // Ethernet library
@@ -71,18 +74,6 @@
 #include <XivelyDatastream.h>
 #include <XivelyFeed.h>
 
-
-#include <SPI.h>
-#include <WiFly.h>
-
-#include <Configuration.h>
-#include <Debug.h>
-#include <ParsedStream.h>
-#include <SpiUart.h>
-#include <WiFly.h>
-//#include <WiFlyClient.h>  
-//#include <WiFlyDevice.h>
-//#include <WiFlyServer.h>
 
 #define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
 #define FEEDID         1464880832  //12155 // replace your feed ID
@@ -134,10 +125,8 @@ XivelyClient xivelyclient(client);
 // initialize the library with the numbers of the interface pins
 // remark: pins 11 and 12 should not be used due to conflict with the Ethernet shield.
 //         therefore, switched to 8 and 9.
-// LCD AV1624 (ANAG VISION)
-//LiquidCrystal lcd(8, 9, 2, 3, 4, 5);
-// LCD Keypad Shield
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+// LCD ANAG Vision
+//LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
 /* Const setting the LCD screen size */
 const int LCD_NB_ROWS = 2;
@@ -357,15 +346,17 @@ byte END_DIV_4_OF_4[8] = {
  * Fonction de configuration de l'écran LCD pour la barre de progression.
  * Utilise tous les caractéres personnalisés de 0 à 8.
  */
+ /*
 void setup_progressbar() {
 
-  /* Enregistre les caractères personnalisés dans la mémoire de l'écran LCD */
+  // Enregistre les caractères personnalisés dans la mémoire de l'écran LCD
   lcd.createChar(0, START_DIV_4_OF_4);
   lcd.createChar(1, DIV_0_OF_8);
   lcd.createChar(2, DIV_8_OF_8);
   lcd.createChar(3, END_DIV_0_OF_4);
   // Les autres caractéres sont configurés dynamiquement
 }
+*/
 
 
 /**
@@ -373,11 +364,12 @@ void setup_progressbar() {
  *
  * @param bank Le numéro de la banque de caractéres à configurer.
  */
+ /*
 void switch_progressbar_bank(byte bank) {
 
   // IMPORTANT : Il est nécessaire de faire un lcd.clear() ou un lcd.setCursor() aprés chaque changement de banque.
 
-  /* Change de banque de caractères */
+  // Change de banque de caractères
   switch (bank) {
     case 0:
       lcd.createChar(4, START_DIV_0_OF_4);
@@ -408,6 +400,7 @@ void switch_progressbar_bank(byte bank) {
       break;
   }
 }
+*/
 
 
 /**
@@ -415,21 +408,22 @@ void switch_progressbar_bank(byte bank) {
  *
  * @param percent Le pourcentage à afficher.
  */
-void draw_progressbar(byte percent, byte line) {
+/*
+ void draw_progressbar(byte percent, byte line) {
 
-  /* Déplace le curseur sur la ligne */
+  // Déplace le curseur sur la ligne 
   lcd.setCursor(0, line);
 
-  /* Map la plage (0 ~ 100) vers la plage (0 ~ (LCD_NB_COLUMNS - 4) * 2 * 4 - 2 * 4) */
+  // Map la plage (0 ~ 100) vers la plage (0 ~ (LCD_NB_COLUMNS - 4) * 2 * 4 - 2 * 4) 
   byte nb_columns = map(percent, 0, 100, 0, (LCD_NB_COLUMNS - 4) * 2 * 4 - 2 * 4);
   // Chaque caractére affiche 2 barres verticales de 4 pixels de haut, mais le premier et dernier caractére n'en affiche qu'une.
   
-  /* Dessine chaque caractére de la ligne */
+  // Dessine chaque caractére de la ligne 
   for (byte i = 0; i < LCD_NB_COLUMNS - 4; ++i) {
 
     if (i == 0) { // Premiére case
 
-      /* Affiche le char de début en fonction du nombre de colonnes */
+      // Affiche le char de début en fonction du nombre de colonnes 
       if (nb_columns > 4) {
         lcd.write((byte) 0); // Char début 4 / 4
         nb_columns -= 4;
@@ -447,7 +441,7 @@ void draw_progressbar(byte percent, byte line) {
 
     } else if (i == LCD_NB_COLUMNS - 5) { // Derniére case
 
-      /* Affiche le char de fin en fonction du nombre de colonnes */
+      // Affiche le char de fin en fonction du nombre de colonnes 
       if (nb_columns > 0) {
         switch_progressbar_bank(3);
         lcd.setCursor(i, line);
@@ -459,7 +453,7 @@ void draw_progressbar(byte percent, byte line) {
 
     } else { // Autres cases
 
-      /* Affiche le char adéquat en fonction du nombre de colonnes */
+      // Affiche le char adéquat en fonction du nombre de colonnes
       if (nb_columns == 0) {
         lcd.write(1); // Char div 0 / 8
 
@@ -482,12 +476,12 @@ void draw_progressbar(byte percent, byte line) {
     }
   }
   
-  /* Affiche le pourcentage */
+  // Affiche le pourcentage
   char tmp[5];
   sprintf(tmp, "%3d%%", percent);
   lcd.print(tmp);
 }
-
+*/
 void setup() {
   /*
   //ethernet shield reset
@@ -501,6 +495,7 @@ void setup() {
   */
   //uart.begin(9600);
   
+  /*
   // set up the LCD's number of columns and rows:
   lcd.begin(LCD_NB_COLUMNS, LCD_NB_ROWS);
   setup_progressbar();
@@ -508,25 +503,26 @@ void setup() {
   // Print a message to the LCD.
   lcd.print("Demarrage.......");
   // put your setup code here, to run once:
+  */
   Serial.begin(9600);
 
   // start the Ethernet connection:
   //Ethernet.begin(mac, ip, myDns, gateway, subnet);
   // give the ethernet module time to boot up:
-  //wifly.begin();
-  delay(3000);  
+  //delay(3000);  
   //Serial.println("Ethernet setup complete");
   
   Serial.println("Join " SSID );
   //if (wifly.join(SSID, KEY, AUTH)) {
-  if (client.join(SSID, KEY, AUTH)) {
-    Serial.println("OK");
-    lcd.clear();
-    lcd.print("WiFi OK!");
+  //if (client.join(SSID, KEY, AUTH)) {
+  if (client.join(SSID, KEY, 3)) {
+    Serial.println("WiFi OK");
+    //lcd.clear();
+    //lcd.print("WiFi OK!");
   } else {
     Serial.println("Failed");
-    lcd.clear();
-    lcd.print("WiFi Failed!");
+    //lcd.clear();
+    //lcd.print("WiFi Failed!");
   }
   /*
   Serial.println("Join " SSID );
@@ -540,7 +536,7 @@ void setup() {
   //lcd.print("Ethernet OK!");
 
   // part to uncomment later
-  
+  /*
   delay(1000); lcd.clear();
   lcd.print("Testing LCD.....");
   
@@ -551,12 +547,19 @@ void setup() {
     Serial.print("Testing progress bar: "); Serial.println(i);
     Serial.println("Now entering the loop");
   } 
+  */
 }
 
 void loop() {  
+  //Serial.println("Petite pause....");
+  //lcd.clear();
+  //lcd.print("Petite pause....");
+  //delay(2000);
+  
   Serial.println("Contacting Xively ... ");
-  lcd.clear();
-  lcd.print("Contact Xively..");
+  //lcd.clear();
+  //lcd.print("Contact Xively..");
+  delay(2000);
   int ret = xivelyclient.get(feed, APIKEY);
   Serial.print("xivelyclient.get returned HTTP code: ");
   Serial.println(ret);
@@ -584,26 +587,26 @@ void loop() {
     // (note: line 1 is the second row, since counting begins with 0):
     // Print a message to the LCD.
     // Print cm value on the 1st line
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+    //lcd.clear();
+    //lcd.setCursor(0, 0);
+    //lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
     // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
-    delay(2000);
-    lcd.clear();
-    lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
+    //draw_progressbar(iFillness, 1);
+    //delay(2000);
+    //lcd.clear();
+    //lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
     // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
-    delay(4000);
-    lcd.clear();
-    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+    //draw_progressbar(iFillness, 1);
+    //delay(4000);
+    //lcd.clear();
+    //lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
     // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
+    //draw_progressbar(iFillness, 1);
     //lcd.setCursor(0, 1);
     //lcd.print("cm "); lcd.print(iFillness); lcd.print("%");
     // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
+    //draw_progressbar(iFillness, 1);
   }
   //Serial.println();
-  delay(15000UL);
+  delay(10000UL);
 }
