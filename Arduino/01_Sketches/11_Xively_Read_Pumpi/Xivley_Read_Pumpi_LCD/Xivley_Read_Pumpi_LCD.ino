@@ -1,8 +1,3 @@
-#include <Debug.h>
-#include <WiFly.h>
-#include <WiFlyClient.h>
-
-
 /*
 # Copyright Pascal Linder, May 2016
 #
@@ -46,6 +41,22 @@
 #   https://github.com/embeddist/WIZ_Ethernet_Library-IDE1.6.x  
 #   A copy of the library was placed into the git repository (under libraries). See https://github.com/linderp1/pascallinder
 #
+# Finally moved to the standard WiFI shield form Arduino due to compatibility reasons (June, 2nd 2016)
+# Standard Arduino WiFi libraries could be used
+# Nevertheless 2 tricky points were to consider:
+# 1. The firmware of the WiFi shield had first to be upgrade to have it work properly
+#    Details were foudn on the following page: http://www.golgi.io/arduino-upgrading-the-wifi-shield-firmware/
+#
+#    a) First the correct MacPorts version had to be installed (in my case for OSX Yosemite): https://www.macports.org/install.php
+#    b) Then the following commands had to be executed:
+#       - sudo port install dfu-programmer
+#       - sudo port selfupdate
+#       - sudo port upgrade outdated
+#       - cd /Applications/Arduino_1.6.9.app/Contents/Java/hardware/arduino/avr/firmwares/wifishield/scripts/ (adapt it to the location of your Arduino App)
+#       - sudo sh ArduinoWifiShield_upgrade_mac.sh -a /Applications/Arduino_1.6.9.app/Contents/Java -f shield
+#
+# 2. Only specific pins could be used for the LCD display as the WiFi shield is already using pins 4, 7, 10, 11, 12, 13
+#    Used therefore pins 2, 3, 5, 6, 8, 9 for the LCD.
 */
 
 #include <LiquidCrystal.h>
@@ -54,7 +65,7 @@
 //#include <SoftwareSerial.h>
 
 /*
-// Ethernet library
+// Ethernet shield libraries
 #include <Dhcp.h>
 #include <Dns.h>
 #include <Ethernet.h>
@@ -62,6 +73,11 @@
 #include <EthernetServer.h>
 #include <EthernetUdp.h>
 */
+// WiFi shield libraries
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WiFiServer.h>
+#include <WiFiUdp.h>
 
 // HTTP libraries
 #include <b64.h>
@@ -91,9 +107,10 @@ IPAddress myDns(192, 168, 1, 1);
 */
 
 //WiFi shield definitions
-#define SSID      "Livebox-6A60"
+#define WIFISSID      "Livebox-6A60"
+//#define WIFISSID      "linderp1's iPhone"
 #define KEY       "5008apt19"
-#define AUTH      WIFLY_AUTH_WPA2_PSK     // or WIFLY_AUTH_WPA1, WIFLY_AUTH_WEP, WIFLY_AUTH_OPEN
+//#define AUTH      WIFLY_AUTH_WPA2_PSK     // or WIFLY_AUTH_WPA1, WIFLY_AUTH_WEP, WIFLY_AUTH_OPEN
 
 // Pins' connection
 // Arduino       WiFly
@@ -112,7 +129,7 @@ XivelyDatastream datastreams[] = {
 // Finally, wrap the datastreams into a feed
 XivelyFeed feed(FEEDID, datastreams, 1 /* number of datastreams */);
 //EthernetClient client;
-WiFlyClient client;
+WiFiClient client;
 XivelyClient xivelyclient(client);
 
 // Variables used for the PING))) sensor
@@ -126,7 +143,7 @@ XivelyClient xivelyclient(client);
 // remark: pins 11 and 12 should not be used due to conflict with the Ethernet shield.
 //         therefore, switched to 8 and 9.
 // LCD ANAG Vision
-//LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+LiquidCrystal lcd(2, 3, 5, 6, 8, 9);
 
 /* Const setting the LCD screen size */
 const int LCD_NB_ROWS = 2;
@@ -346,7 +363,7 @@ byte END_DIV_4_OF_4[8] = {
  * Fonction de configuration de l'écran LCD pour la barre de progression.
  * Utilise tous les caractéres personnalisés de 0 à 8.
  */
- /*
+
 void setup_progressbar() {
 
   // Enregistre les caractères personnalisés dans la mémoire de l'écran LCD
@@ -356,15 +373,12 @@ void setup_progressbar() {
   lcd.createChar(3, END_DIV_0_OF_4);
   // Les autres caractéres sont configurés dynamiquement
 }
-*/
-
 
 /**
  * Fonction de configuration dynamique de l'écran LCD pour la barre de progression.
  *
  * @param bank Le numéro de la banque de caractéres à configurer.
  */
- /*
 void switch_progressbar_bank(byte bank) {
 
   // IMPORTANT : Il est nécessaire de faire un lcd.clear() ou un lcd.setCursor() aprés chaque changement de banque.
@@ -400,15 +414,12 @@ void switch_progressbar_bank(byte bank) {
       break;
   }
 }
-*/
-
 
 /**
  * Fonction dessinant la barre de progression.
  *
  * @param percent Le pourcentage à afficher.
  */
-/*
  void draw_progressbar(byte percent, byte line) {
 
   // Déplace le curseur sur la ligne 
@@ -481,8 +492,26 @@ void switch_progressbar_bank(byte bank) {
   sprintf(tmp, "%3d%%", percent);
   lcd.print(tmp);
 }
-*/
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your WiFi shield's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
+}
+
 void setup() {
+  Serial.begin(9600);
   /*
   //ethernet shield reset
   pinMode(10, OUTPUT);
@@ -493,50 +522,38 @@ void setup() {
   digitalWrite(10, LOW);
   //digitalWrite(10, HIGH); 
   */
-  //uart.begin(9600);
   
-  /*
   // set up the LCD's number of columns and rows:
   lcd.begin(LCD_NB_COLUMNS, LCD_NB_ROWS);
   setup_progressbar();
   lcd.clear();
   // Print a message to the LCD.
   lcd.print("Demarrage.......");
-  // put your setup code here, to run once:
-  */
-  Serial.begin(9600);
-
+  delay(1000);
+  
   // start the Ethernet connection:
   //Ethernet.begin(mac, ip, myDns, gateway, subnet);
   // give the ethernet module time to boot up:
   //delay(3000);  
   //Serial.println("Ethernet setup complete");
-  
-  Serial.println("Join " SSID );
-  //if (wifly.join(SSID, KEY, AUTH)) {
-  //if (client.join(SSID, KEY, AUTH)) {
-  if (client.join(SSID, KEY, 3)) {
+
+  Serial.println("Join " WIFISSID );
+  lcd.setCursor(0, 0);
+  lcd.print("Joining Wi-Fi AP");
+  lcd.setCursor(0, 1);
+  lcd.print(WIFISSID);
+  if (WiFi.begin(WIFISSID, KEY)) {
     Serial.println("WiFi OK");
-    //lcd.clear();
-    //lcd.print("WiFi OK!");
+    lcd.setCursor(0, 0);
+    lcd.print("WiFi OK!        ");
+    printWifiStatus();
   } else {
     Serial.println("Failed");
     //lcd.clear();
     //lcd.print("WiFi Failed!");
   }
-  /*
-  Serial.println("Join " SSID );
-  while(!wifly.join(SSID, KEY, AUTH)) {
-    Serial.println("connect network error! try again ...");
-    delay(2000);
-  }
-  */
-
-  //lcd.clear();
-  //lcd.print("Ethernet OK!");
-
-  // part to uncomment later
-  /*
+  //
+  
   delay(1000); lcd.clear();
   lcd.print("Testing LCD.....");
   
@@ -547,25 +564,20 @@ void setup() {
     Serial.print("Testing progress bar: "); Serial.println(i);
     Serial.println("Now entering the loop");
   } 
-  */
 }
 
 void loop() {  
-  //Serial.println("Petite pause....");
-  //lcd.clear();
-  //lcd.print("Petite pause....");
-  //delay(2000);
   
   Serial.println("Contacting Xively ... ");
   //lcd.clear();
-  //lcd.print("Contact Xively..");
-  delay(2000);
+  lcd.setCursor(0, 1);
+  lcd.print("Conn. Xively API");
+  //delay(2000);
   int ret = xivelyclient.get(feed, APIKEY);
   Serial.print("xivelyclient.get returned HTTP code: ");
   Serial.println(ret);
 
-  if (ret > 0)
-  {
+  if (ret > 0) {
     Serial.println("Datastream is...");
     Serial.println(feed[0]);
 
@@ -587,26 +599,29 @@ void loop() {
     // (note: line 1 is the second row, since counting begins with 0):
     // Print a message to the LCD.
     // Print cm value on the 1st line
-    //lcd.clear();
-    //lcd.setCursor(0, 0);
-    //lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
     // Draw the progress bar wth the percentage value on the 2nd line
-    //draw_progressbar(iFillness, 1);
-    //delay(2000);
-    //lcd.clear();
-    //lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
+    draw_progressbar(iFillness, 1);
+    delay(2000);
+    lcd.clear();
+    lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
     // Draw the progress bar wth the percentage value on the 2nd line
-    //draw_progressbar(iFillness, 1);
-    //delay(4000);
-    //lcd.clear();
-    //lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+    draw_progressbar(iFillness, 1);
+    delay(4000);
+    lcd.clear();
+    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
     // Draw the progress bar wth the percentage value on the 2nd line
-    //draw_progressbar(iFillness, 1);
-    //lcd.setCursor(0, 1);
-    //lcd.print("cm "); lcd.print(iFillness); lcd.print("%");
+    draw_progressbar(iFillness, 1);
+    lcd.setCursor(0, 1);
+    lcd.print("cm "); lcd.print(iFillness); lcd.print("%");
     // Draw the progress bar wth the percentage value on the 2nd line
-    //draw_progressbar(iFillness, 1);
+    draw_progressbar(iFillness, 1);
+  } else {
+    lcd.setCursor(0, 1);
+    lcd.print("Comm. error!");
   }
-  //Serial.println();
-  delay(10000UL);
+  Serial.println();
+  delay(15000UL);
 }
