@@ -1,4 +1,5 @@
 /*
+ * OK version
 # Copyright Pascal Linder, May 2016
 #
 # This Arduino sketch fetches the current "Level" value from Xively (FEEDID: 1464880832) approx. every 20 seconds. 
