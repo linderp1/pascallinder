@@ -71,3 +71,13 @@ for day in datespan(start_datetime, end_datetime, deltatime): # loop increasing 
 			f.write(row[0]+","+row[1]+","+row[2]+"\n") # write "id,timestamp,value"
 
 print("--- %.3f seconds ---" % (time.time() - start)) # print elapsed time
+
+## new
+start = time.time() # to count elapsed time
+print("---------------")
+response = urllib2.urlopen('https://api.xively.com/v2/feeds/'+str(feed)+'.csv?key='+apikey_xively+'&start='+ day.strftime("%Y-%m-%dT%H:%M:%SZ")+'&interval='+str(interval)+'&duration='+duration) # get data
+cr = csv.reader(response) # return data in columns
+print("Channel: "+row[0])
+print("Time: "+row[1])
+print("Value: "+row[2])
+print("--- %.3f seconds ---" % (time.time() - start)) # print elapsed time
