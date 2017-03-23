@@ -252,9 +252,6 @@ class SmDisplay:
 		pygame.draw.line( self.screen, lc, (xmax*0.75,ymax*0.5),(xmax*0.75,ymax), lines ) # Separator between Day+2 and Day+3
 
 		# Addendum PaL
-		#pygame.draw.line( self.screen, red, (xmax*0.5,((ymax*.5)-(ymax*0.15)),(xmax*0.5,((ymax*.5)-(ymax*0.15)), lines ) # Pumpi box Upper line
-		#pygame.draw.line( self.screen, lc, (xmax*0.75,ymax*0.5),(xmax*0.75,ymax), lines ) # Pumpi box Left line
-
 		# Load Xively feed data
 		#https://api.xively.com/v2/feeds/1464880832.csv?key=DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g
 		response = urllib2.urlopen('http://api.xively.com/v2/feeds/1464880832.csv?key=DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g') # get data
@@ -262,7 +259,14 @@ class SmDisplay:
 		for row in cr:
 			if row[0] in id: # choose desired data
 				#f.write(row[0]+","+row[1]+","+row[2]+"\n") # write "id,timestamp,value"
-				PUMPI_VALUE = row[2]
+				PUMPI_VALUE_TEMP = row[2]
+				PUMMPI_DATE = row[1]
+
+		mystring = "This is my string\x00\x00\x00hi there\x00"
+		
+		terminator = PUMPI_VALUE_TEMP.index('.')
+		PUMPI_VALUE = PUMPI_VALUE_TEMP[:terminator]
+		# "This is my string"
 
 		# Set LOCALE to fr_FR.UTF-8
 		# NOT WORKING YET, additional changes required!!!
@@ -305,6 +309,16 @@ class SmDisplay:
 		self.screen.blit( dtxt, (x,ymax*0.2) )
 		#self.screen.blit( dtxt, (xmax*0.02+tx*1.02,ymax*0.2) )
 
+		# Pumpi value in big (upper right corner)
+		# For testing purpose only # PUMPI_VALUE = "100"
+		font = pygame.font.SysFont( fn, int(ymax*(0.5-0.15)*0.9), bold=1 )
+		if (int(PUMPI_VALUE) < 108):
+			txt = font.render( PUMPI_VALUE, True, PUMPI_RED )
+		else:
+			txt = font.render( PUMPI_VALUE, True, PUMPI_GREEN )
+		(tx,ty) = txt.get_size()
+		self.screen.blit( txt, (xmax*0.6,ymax*0.15) )
+
 		# Conditions
 		st = 0.16    # Yaxis Start Pos
 		gp = 0.065   # Line Spacing Gap
@@ -313,8 +327,9 @@ class SmDisplay:
 		so = 0.01    # Degree Symbol Yaxis Offset
 		xp = 0.52    # Xaxis Start Pos
 		x2 = 0.78    # Second Column Xaxis Start Pos
-
+		
 		font = pygame.font.SysFont( fn, int(ymax*th), bold=1 )
+		'''
 		txt = font.render( 'T'+ unichr(0xb0)+' ressentie:', True, lc )
 		self.screen.blit( txt, (xmax*xp,ymax*st) )
 		txt = font.render( self.feels_like, True, lc )
@@ -352,15 +367,24 @@ class SmDisplay:
 		self.screen.blit( txt, (xmax*xp,ymax*(st+gp*4)) )
 		txt = font.render( self.humid+'%', True, lc )
 		self.screen.blit( txt, (xmax*x2,ymax*(st+gp*4)) )
+		'''
 
 		# Addendum PaL
 		txt = font.render( 'Niveau pompe:', True, lc )
 		self.screen.blit( txt, (xmax*0.05,ymax*0.43) )
-		if (PUMPI_VALUE < 108):
+		if (int(PUMPI_VALUE) < 108):
 			txt = font.render( PUMPI_VALUE, True, PUMPI_RED )
 		else:
 			txt = font.render( PUMPI_VALUE, True, PUMPI_GREEN )
 		self.screen.blit( txt, (xmax*0.33,ymax*0.43) )
+		txt = font.render( 'cm', True, lc )
+		self.screen.blit( txt, (xmax*0.42,ymax*0.43) )
+
+		txt = font.render( 'Relev'+unichr(0xe9)+':', True, lc )
+		self.screen.blit( txt, (xmax*0.51,ymax*0.43) )
+		txt = font.render( PUMMPI_DATE, True, lc )
+		self.screen.blit( txt, (xmax*0.64,ymax*0.43) )
+
 
 		wx = 	0.125			# Sub Window Centers
 		wy = 	0.510			# Sub Windows Yaxis Start
