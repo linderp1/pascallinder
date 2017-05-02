@@ -1,1 +1,1 @@
-net use X: \\rbavmwcdb024.bas.roche.com\backup 5YkxCqsq37XzCa2 /USER:rbavmwcdb024\backup
+net use X: \\server\backup <passwd> /USER:domain\backup
