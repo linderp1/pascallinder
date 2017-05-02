@@ -38,9 +38,9 @@ echo *
 echo *----------------------------------------------------------------------------
 echo * ATLas shares
 echo *----------------------------------------------------------------------------
-NET USE I: \\rbamscoe131.bas.roche.com\dept_poy\_org\pgsq
-NET USE J: \\rbamscoe131.bas.roche.com\dept_poy\_org\pgsq\02_ATLas
-NET USE L: \\rbamscoe131.bas.roche.com\dept_poy\_org\pgsq\02_ATLas\03_Projects\2009-RLP-One6
+NET USE I: \\server\dept_poy\_org\pgsq
+NET USE J: \\server\dept_poy\_org\pgsq\02_ATLas
+NET USE L: \\server\dept_poy\_org\pgsq\02_ATLas\03_Projects\2009-RLP-One6
 echo *
 echo *----------------------------------------------------------------------------
 echo * NAS server shares
