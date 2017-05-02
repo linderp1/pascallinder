@@ -36,28 +36,16 @@ echo *--------------------------------------------------------------------------
 echo *
 echo *
 echo *----------------------------------------------------------------------------
-echo * ATLas shares
-echo *----------------------------------------------------------------------------
-NET USE I: \\server\dept_poy\_org\pgsq
-NET USE J: \\server\dept_poy\_org\pgsq\02_ATLas
-NET USE L: \\server\dept_poy\_org\pgsq\02_ATLas\03_Projects\2009-RLP-One6
-echo *
-echo *----------------------------------------------------------------------------
 echo * NAS server shares
 echo *----------------------------------------------------------------------------
 echo *
-NET USE O: \\rbavmwcdb024\Data
-NET USE P: \\rbavmwcdb024\linderp1$
+NET USE O: \\server\Data
+NET USE P: \\server\linderp1$
 echo *
 echo *----------------------------------------------------------------------------
 echo * Roche user shares (U and V drives)
 echo *----------------------------------------------------------------------------
 echo *
-NET USE U: \\rbamscoe101\U_linderp1$
-NET USE V: \\rbamscoe131.bas.roche.com\Dept_POY
-echo *----------------------------------------------------------------------------
-echo PGSQ "Special" share
-echo *----------------------------------------------------------------------------
-echo *
-NET USE X: \\rbamscoe131.bas.roche.com\dept_poy\_Special\PGSQ
+NET USE V: \\server\folder
+
 echo *
