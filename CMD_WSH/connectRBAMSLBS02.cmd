@@ -1,1 +1,1 @@
-net use y: \\rbamslbs02.emea.roche.com\Backup$ DidlAPW02 /USER:rbamslbs02\administrator
+net use y: \\servername\folder <passwd> /USER:domain\administrator
