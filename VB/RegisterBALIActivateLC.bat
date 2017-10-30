@@ -1,1 +1,0 @@
-"C:\Program Files\ChemLMS\qcclient\misc\Regsvr32.exe"  C:\DEVELOPMENT\VB\BALIActivateLC\BALIActivateLC.dll
