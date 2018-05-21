@@ -1,3 +1,38 @@
+#include <SPI.h>
+
+#include <ThingSpeak.h>
+
+#include <b64.h>
+#include <HttpClient.h>
+
+#include <LiquidCrystal.h>
+
+/*
+// Ethernet shield libraries
+#include <Dhcp.h>
+#include <Dns.h>
+#include <Ethernet.h>
+#include <EthernetClient.h>
+#include <EthernetServer.h>
+#include <EthernetUdp.h>
+*/
+// WiFi shield libraries
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WiFiServer.h>
+#include <WiFiUdp.h>
+
+// HTTP libraries
+#include <b64.h>
+#include <HttpClient.h>
+
+// Xively libraries
+#include <CountingStream.h>
+#include <Xively.h>
+#include <XivelyClient.h>
+#include <XivelyDatastream.h>
+#include <XivelyFeed.h>
+
 /*
  * OK version WiFI
 # Copyright Pascal Linder, May 2018.
@@ -60,41 +95,8 @@
 #    Used therefore pins 2, 3, 5, 6, 8, 9 for the LCD.
 */
 
-#include <LiquidCrystal.h>
-
-//#include <Arduino.h>
-//#include <SoftwareSerial.h>
-
-/*
-// Ethernet shield libraries
-#include <Dhcp.h>
-#include <Dns.h>
-#include <Ethernet.h>
-#include <EthernetClient.h>
-#include <EthernetServer.h>
-#include <EthernetUdp.h>
-*/
-// WiFi shield libraries
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <WiFiServer.h>
-#include <WiFiUdp.h>
-
-// HTTP libraries
-#include <b64.h>
-#include <HttpClient.h>
-
-// Xively libraries
-#include <CountingStream.h>
-#include <Xively.h>
-#include <XivelyClient.h>
-#include <XivelyDatastream.h>
-#include <XivelyFeed.h>
-
-
-#define APIKEY         "DStyplPvQgFpXYUeYGoJ5X_RfLSSAKxmRmxXMzV0UTU5ND0g"
-#define FEEDID         1464880832  //12155 // replace your feed ID
-#define USERAGENT      "WaterLevel" // user agent is the project name
+unsigned long myChannelNumber = 501076;
+const char * myReadAPIKey = "M6GMDIW9VUOMZ64C";
 
 /*
 // MAC address for your Ethernet shield
@@ -111,27 +113,10 @@ IPAddress myDns(192, 168, 1, 1);
 #define WIFISSID      "Livebox-6A60"
 //#define WIFISSID      "linderp1's iPhone"
 #define KEY       "5008apt19"
-//#define AUTH      WIFLY_AUTH_WPA2_PSK     // or WIFLY_AUTH_WPA1, WIFLY_AUTH_WEP, WIFLY_AUTH_OPEN
+//#define KEY       "pipifax2017"
 
-// Pins' connection
-// Arduino       WiFly
-//  2    <---->    TX
-//  3    <---->    RX
-//SoftwareSerial uart(2, 3);
-//WiFly wifly(&uart);
-//WiFly wifly(&Serial1);     // for leonardo, use hardware serial - Serial1
-
-// Define the string for our datastream ID
-char levelId[] = "Level";
-//String levelId("Level");
-XivelyDatastream datastreams[] = {
-  XivelyDatastream(levelId, strlen(levelId), DATASTREAM_FLOAT),
-};
-// Finally, wrap the datastreams into a feed
-XivelyFeed feed(FEEDID, datastreams, 1 /* number of datastreams */);
 //EthernetClient client;
 WiFiClient client;
-XivelyClient xivelyclient(client);
 
 // Variables used for the PING))) sensor
   long lLevelMin = 122; // 122cm = low water level (nivean bas = cuve vide) // ** TO BE ADAPTED TO THE TANK PARAMETERS **
@@ -513,16 +498,6 @@ void printWifiStatus() {
 
 void setup() {
   Serial.begin(9600);
-  /*
-  //ethernet shield reset
-  pinMode(10, OUTPUT);
-  digitalWrite(10, LOW);
-  delay(1000);
-  digitalWrite(10, HIGH);
-  delay(1000);
-  digitalWrite(10, LOW);
-  //digitalWrite(10, HIGH); 
-  */
   
   // set up the LCD's number of columns and rows:
   lcd.begin(LCD_NB_COLUMNS, LCD_NB_ROWS);
@@ -545,9 +520,24 @@ void setup() {
   lcd.print(WIFISSID);
   if (WiFi.begin(WIFISSID, KEY)) {
     Serial.println("WiFi OK");
-    lcd.setCursor(0, 0);
+    lcd.setCursor(0, 1);
     lcd.print("WiFi OK!        ");
-    printWifiStatus();
+    delay(1000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(WIFISSID);
+    lcd.setCursor(0, 1);
+    IPAddress ip = WiFi.localIP();
+    lcd.print("IP: ");lcd.print(ip);
+    delay(1000);
+    lcd.setCursor(0, 1);
+    long rssi = WiFi.RSSI();
+    lcd.print("                ");
+    lcd.setCursor(0, 1);
+    lcd.print("Signal: ");lcd.print(rssi);lcd.print("dBm");
+    delay(1000);
+
+    //printWifiStatus(); // print wifi information to serial port
   } else {
     Serial.println("Failed");
     //lcd.clear();
@@ -565,64 +555,66 @@ void setup() {
     Serial.print("Testing progress bar: "); Serial.println(i);
     Serial.println("Now entering the loop");
   } 
+  
+  // start ThingSpeak client
+  ThingSpeak.begin(client);
 }
 
 void loop() {  
   
-  Serial.println("Contacting Xively ... ");
+  Serial.println("Conn. ThingSpeak");
   //lcd.clear();
   lcd.setCursor(0, 1);
-  lcd.print("Conn. Xively API");
+  lcd.print("Conn. ThingSpeak");
   //delay(2000);
-  int ret = xivelyclient.get(feed, APIKEY);
-  Serial.print("xivelyclient.get returned HTTP code: ");
-  Serial.println(ret);
+  //int ret = xivelyclient.get(feed, APIKEY);
+  //Serial.print("xivelyclient.get returned HTTP code: ");
+  //Serial.println(ret);
 
-  if (ret > 0) {
-    Serial.println("Datastream is...");
-    Serial.println(feed[0]);
+  
+  //Serial.println("Datastream is...");
+  //Serial.println(feed[0]);
 
-    Serial.print("Current level is: ");
-    //float float_value = datastreams[0].getFloat();
-    float float_value = feed[0].getFloat();
-    
-    Serial.println();
-    Serial.print("> Level when minimum: "); Serial.println(lLevelMin);
-    Serial.print("> Level when maximum: "); Serial.println(lLevelMax);
-    Serial.print("> Level for 100% fillness: "); Serial.println(lLevelFor100PercFillness);
-    Serial.print("> Level for 1% fillness: "); Serial.println(lLevelFor1PercFillness);
-    // Calculates percentage of fillness
-    int iFillness = (float_value-lLevelMin)/(lLevelFor1PercFillness*-1);
-    Serial.print("> Current % of fillness: "); Serial.println(iFillness);
-    
-    Serial.println(float_value);
-    // set the cursor to column 0, line 1
-    // (note: line 1 is the second row, since counting begins with 0):
-    // Print a message to the LCD.
-    // Print cm value on the 1st line
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
-    // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
-    delay(2000);
-    lcd.clear();
-    lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
-    // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
-    delay(4000);
-    lcd.clear();
-    lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
-    // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
-    lcd.setCursor(0, 1);
-    lcd.print("cm "); lcd.print(iFillness); lcd.print("%");
-    // Draw the progress bar wth the percentage value on the 2nd line
-    draw_progressbar(iFillness, 1);
-  } else {
-    lcd.setCursor(0, 1);
-    lcd.print("Comm. error!");
-  }
+  Serial.print("Current level is: ");
+  //float float_value = datastreams[0].getFloat();
+  //float float_value = feed[0].getFloat();
+  
+  float float_value = ThingSpeak.readFloatField(myChannelNumber, 1, myReadAPIKey);
+  
+  Serial.println();
+  Serial.print("> Level when minimum: "); Serial.println(lLevelMin);
+  Serial.print("> Level when maximum: "); Serial.println(lLevelMax);
+  Serial.print("> Level for 100% fillness: "); Serial.println(lLevelFor100PercFillness);
+  Serial.print("> Level for 1% fillness: "); Serial.println(lLevelFor1PercFillness);
+  // Calculates percentage of fillness
+  int iFillness = (float_value-lLevelMin)/(lLevelFor1PercFillness*-1);
+  Serial.print("> Current % of fillness: "); Serial.println(iFillness);
+  
+  Serial.println(float_value);
+  // set the cursor to column 0, line 1
+  // (note: line 1 is the second row, since counting begins with 0):
+  // Print a message to the LCD.
+  // Print cm value on the 1st line
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+  // Draw the progress bar wth the percentage value on the 2nd line
+  draw_progressbar(iFillness, 1);
+  delay(2000);
+  lcd.clear();
+  lcd.print("Min:");lcd.print(lLevelMin);lcd.print(", Max:");lcd.print(lLevelMax);
+  // Draw the progress bar wth the percentage value on the 2nd line
+  draw_progressbar(iFillness, 1);
+  delay(4000);
+  lcd.clear();
+  lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+  // Draw the progress bar wth the percentage value on the 2nd line
+  draw_progressbar(iFillness, 1);
+  lcd.setCursor(0, 1);
+  lcd.print("cm "); lcd.print(iFillness); lcd.print("%");
+  // Draw the progress bar wth the percentage value on the 2nd line
+  draw_progressbar(iFillness, 1);
+  
   Serial.println();
   delay(15000UL);
 }
