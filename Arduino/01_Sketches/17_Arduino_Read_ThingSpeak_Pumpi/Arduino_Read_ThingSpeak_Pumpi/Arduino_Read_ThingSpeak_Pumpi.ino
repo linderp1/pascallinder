@@ -580,7 +580,7 @@ void loop() {
   // Print cm value on the 1st line
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+  lcd.print("Niveau: "); lcd.print(float_value); lcd.print("cm");
   // Draw the progress bar wth the percentage value on the 2nd line
   draw_progressbar(iFillness, 1);
   delay(2000);
@@ -590,7 +590,7 @@ void loop() {
   draw_progressbar(iFillness, 1);
   delay(4000);
   lcd.clear();
-  lcd.print("Niveau: "); lcd.print(float_value, 2); lcd.print("cm");
+  lcd.print("Niveau: "); lcd.print(float_value); lcd.print("cm");
   // Draw the progress bar wth the percentage value on the 2nd line
   draw_progressbar(iFillness, 1);
   lcd.setCursor(0, 1);
