@@ -506,6 +506,7 @@ void setup() {
   //Serial.println("Ethernet setup complete");
 
   Serial.println("Join " WIFISSID );
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Joining Wi-Fi AP");
   lcd.setCursor(0, 1);
