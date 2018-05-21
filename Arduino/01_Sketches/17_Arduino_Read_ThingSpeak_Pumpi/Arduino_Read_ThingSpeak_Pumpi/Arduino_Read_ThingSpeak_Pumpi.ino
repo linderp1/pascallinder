@@ -1,43 +1,11 @@
-#include <SPI.h>
-
-#include <ThingSpeak.h>
-
-#include <b64.h>
-#include <HttpClient.h>
-
-#include <LiquidCrystal.h>
 
 /*
-// Ethernet shield libraries
-#include <Dhcp.h>
-#include <Dns.h>
-#include <Ethernet.h>
-#include <EthernetClient.h>
-#include <EthernetServer.h>
-#include <EthernetUdp.h>
-*/
-// WiFi shield libraries
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <WiFiServer.h>
-#include <WiFiUdp.h>
-
-// HTTP libraries
-#include <b64.h>
-#include <HttpClient.h>
-
-// Xively libraries
-#include <CountingStream.h>
-#include <Xively.h>
-#include <XivelyClient.h>
-#include <XivelyDatastream.h>
-#include <XivelyFeed.h>
-
-/*
- * OK version WiFI
+# ==================================
+# ThingSpeak version
 # Copyright Pascal Linder, May 2018.
+# ==================================
 #
-# This Arduino sketch fetches the current "Level" value from Xively (FEEDID: 1464880832) approx. every 20 seconds. 
+# This Arduino sketch fetches the current "Level" value from ThingSpeak (Channel ID: 501076) approx. every 20 seconds. 
 # The value is displayed on a 2*16 char LCD display (ANAG VISION AV1624)
 #
 # LCD wiring as follows:
@@ -94,6 +62,27 @@
 # 2. Only specific pins could be used for the LCD display as the WiFi shield is already using pins 4, 7, 10, 11, 12, 13
 #    Used therefore pins 2, 3, 5, 6, 8, 9 for the LCD.
 */
+
+#include <SPI.h>
+#include <ThingSpeak.h>
+#include <b64.h>
+#include <HttpClient.h>
+#include <LiquidCrystal.h>
+
+/*
+// Ethernet shield libraries
+#include <Dhcp.h>
+#include <Dns.h>
+#include <Ethernet.h>
+#include <EthernetClient.h>
+#include <EthernetServer.h>
+#include <EthernetUdp.h>
+*/
+// WiFi shield libraries
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WiFiServer.h>
+#include <WiFiUdp.h>
 
 unsigned long myChannelNumber = 501076;
 const char * myReadAPIKey = "M6GMDIW9VUOMZ64C";
@@ -504,8 +493,11 @@ void setup() {
   setup_progressbar();
   lcd.clear();
   // Print a message to the LCD.
+  lcd.setCursor(0, 0);
   lcd.print("Demarrage.......");
-  delay(1000);
+  lcd.setCursor(0, 1);
+  lcd.print("P.Linder 05/2018");
+  delay(2000);
   
   // start the Ethernet connection:
   //Ethernet.begin(mac, ip, myDns, gateway, subnet);
@@ -566,19 +558,9 @@ void loop() {
   //lcd.clear();
   lcd.setCursor(0, 1);
   lcd.print("Conn. ThingSpeak");
-  //delay(2000);
-  //int ret = xivelyclient.get(feed, APIKEY);
-  //Serial.print("xivelyclient.get returned HTTP code: ");
-  //Serial.println(ret);
-
-  
-  //Serial.println("Datastream is...");
-  //Serial.println(feed[0]);
-
   Serial.print("Current level is: ");
-  //float float_value = datastreams[0].getFloat();
-  //float float_value = feed[0].getFloat();
   
+  // reading value from field 1 from channel 501076
   float float_value = ThingSpeak.readFloatField(myChannelNumber, 1, myReadAPIKey);
   
   Serial.println();
