@@ -522,13 +522,13 @@ void setup() {
     lcd.setCursor(0, 1);
     IPAddress ip = WiFi.localIP();
     lcd.print("IP: ");lcd.print(ip);
-    delay(1000);
+    delay(1500);
     lcd.setCursor(0, 1);
     long rssi = WiFi.RSSI();
     lcd.print("                ");
     lcd.setCursor(0, 1);
     lcd.print("Signal: ");lcd.print(rssi);lcd.print("dBm");
-    delay(1000);
+    delay(1500);
 
     //printWifiStatus(); // print wifi information to serial port
   } else {
