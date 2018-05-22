@@ -61,6 +61,13 @@
 #
 # 2. Only specific pins could be used for the LCD display as the WiFi shield is already using pins 4, 7, 10, 11, 12, 13
 #    Used therefore pins 2, 3, 5, 6, 8, 9 for the LCD.
+#
+# ThingSpeak details:
+# Channel ID: 501076
+# Read API key: M6GMDIW9VUOMZ64C
+# Field 1 is used
+# URL where information about reading data from ThingSpeak was taken:
+# https://github.com/mathworks/thingspeak-arduino/blob/master/examples/ReadPrivateChannel/ReadPrivateChannel.ino
 */
 
 #include <SPI.h>
